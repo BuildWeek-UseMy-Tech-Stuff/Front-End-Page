@@ -1,8 +1,8 @@
 import React from "react";
+import {connect} from 'react-redux'
 
 
-
-const TechList = () => {
+const TechList = props => {
 
 
     return (
@@ -16,6 +16,11 @@ const TechList = () => {
 
 }
 
+const mapStateToProps = state => {
+    return {
+        tech: state.tech
+    }
+}
 
 
-export default TechList
+export default connect(mapStateToProps, {})(TechList);
