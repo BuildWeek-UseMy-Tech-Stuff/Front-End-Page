@@ -1,4 +1,5 @@
 import React from 'react';
+import SignupForm from './components/SignupForm.js';
 
 
 import { Route } from "react-router-dom"
@@ -23,9 +24,8 @@ function App() {
     <div className="App">
     <Route path="/" component={Navigation} />
     <Route path="/login" component={LoginForm} />
-    {/* <Route path="/signup" component={SignupForm} /> */}
+    <Route path="/signup" component={SignupForm} />
     <Copyright/>
-
     </div>
   );
 }
