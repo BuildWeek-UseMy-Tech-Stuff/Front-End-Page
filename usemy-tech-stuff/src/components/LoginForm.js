@@ -51,7 +51,7 @@ const UserForm = ({status }) => {
                     Sign In
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" placeholder="Username *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="username" placeholder="Username *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="password" name="password" autoComplete="new-password" placeholder="Password *" />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
