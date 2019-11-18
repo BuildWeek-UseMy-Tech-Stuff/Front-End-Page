@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const UserForm = ({ values, errors, touched, status }) => {
+const UserForm = ({status }) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
