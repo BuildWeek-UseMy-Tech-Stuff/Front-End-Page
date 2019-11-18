@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
+    
     "axios": "^0.19.0",
     "formik": "^2.0.4",
     "formik-material-fields": "^0.0.6",
@@ -15,9 +16,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
     "typeface-roboto": "^0.0.75",
+    "redux-thunk": "^2.3.0",
     "yup": "^0.27.0"
   },
   "scripts": {
