@@ -1,6 +1,6 @@
 [build]
- base = "usemy-tech-stuff"
-   publish="usemy-tech-stuff/build"
+ base = "/"
+   publish="usemy-tech-stuff/public"
   command = "yarn run build"
 
  
