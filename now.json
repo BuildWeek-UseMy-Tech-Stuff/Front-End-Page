@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "app-folder-name",
+  "name": "usemytech-stuff",
   "builds": [
     {
       "src": "usemytech-stuff/package.json",
@@ -8,4 +8,5 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "app-folder-name/$1" }]
+  "routes": [{ "src": "/(.*)", "dest": "usemytech-stuff/$1" }]
+}
