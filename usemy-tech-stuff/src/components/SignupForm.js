@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
@@ -151,7 +152,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                 </Typography>
                 <Form className={classes.form}>
                         <FormikTextField variant="outlined" margin="normal" fullWidth name="email" autoComplete="email" label="Email *" type="text"/>
-                        <FormikTextField variant="outlined" margin="normal" fullWidth name="username" autoComplete="username" label="Username *" type="text"/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="username" autoComplete="username" placeholder="Username *" type="text"/>
                         <FormikTextField variant="outlined" margin="normal" fullWidth name="password" label="Password *" type="password"/>
                     <div>
                         <Button onClick={handleClick} type="submit" variant="contained" fullWidth color="primary" className={classes.submit}>Submit!</Button>

@@ -6,6 +6,7 @@ import { Route } from "react-router-dom"
 import Navigation from "./components/Navigation"
 import LoginForm from "./components/LoginForm"
 import TechList from "./components/TechList"
+import PostItem from "./components/PostItem"
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
@@ -28,8 +29,9 @@ function App(props) {
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
+    <PrivateRoute exact path="/AddItem" component = {PostItem} />
     <Copyright/>
-   <TechList/>
+   {/* <TechList/> */}
     </div>
   );
 }
