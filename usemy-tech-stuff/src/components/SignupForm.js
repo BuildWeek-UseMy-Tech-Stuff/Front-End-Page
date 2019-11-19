@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { withFormik, Form } from 'formik';
-import { Link } from "react-router-dom"
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import axios from "axios";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
@@ -157,7 +155,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                     <div>
                         <Button onClick={handleClick} type="submit" variant="contained" fullWidth color="primary" className={classes.submit}>Submit!</Button>
                         {
-                        (isSubmitting === true)
+                        (status === "waiting")
                             ? <Snackbar
                             anchorOrigin={{
                             vertical: 'bottom',
@@ -206,39 +204,44 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
         </Container>
     );
 }
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 const FormikLoginForm = withFormik({
-    mapPropsToValues({username, email, password}) {
+    mapPropsToValues({username, email, password, phone_number, userlocation}) {
         return {
             username: username || "",
-            // email: email || "",
+            email: email || "",
             password: password || "",
-        
+            phone_number: phone_number || "",
+            location: userlocation || ""
         };
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()
         .max(16, "Username cannot be more than 16 characters")
+        .min(8, "Username must be at least 8 characters")
         .required("A username is required"),
-        // email: Yup.string()
-        // .email("Please use a valid email address")
-        // .required("An email is required"),
+        email: Yup.string()
+        .email("Please use a valid email address")
+        .required("An email is required"),
         password: Yup.string()
+        .max(16, "Password cannot be more than 16 characters")
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
+        phone_number: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
         }),
 
     handleSubmit(values, { resetForm, setSubmitting, setStatus, props }) {
         setSubmitting(true);
-
+        setStatus("waiting");
         axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 setStatus("success");
                 resetForm();
                 setSubmitting(false);
-                props.history.push("/login")
-                
-
+                setTimeout(() => {
+                  props.history.push("/login")
+                }, 1500);
             })
             .catch(err => {
                 setStatus("failed")
