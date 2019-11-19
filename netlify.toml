@@ -1,7 +1,9 @@
 [build]
+ base = "usemy-tech-stuff"
+   publish="usemy-tech-stuff/build"
   command = "yarn run build"
-  publish=""
-  base = "usemy-tech-stuff"
+
+ 
 
   [[redirects]]
   from = "/*"
