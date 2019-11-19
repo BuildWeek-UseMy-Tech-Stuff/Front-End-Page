@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { withFormik, Form } from 'formik';
+import { Link } from "react-router-dom"
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from "axios";
@@ -8,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
@@ -102,6 +104,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
 
         setOpen(false);
     };
+
 
     useEffect(() => {
         setSubmitting(false);
@@ -203,34 +206,39 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
         </Container>
     );
 }
-
 const FormikLoginForm = withFormik({
     mapPropsToValues({username, email, password}) {
         return {
             username: username || "",
-            email: email || "",
+            // email: email || "",
             password: password || "",
+        
         };
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()
         .max(16, "Username cannot be more than 16 characters")
         .required("A username is required"),
-        email: Yup.string()
-        .email("Please use a valid email address")
-        .required("An email is required"),
+        // email: Yup.string()
+        // .email("Please use a valid email address")
+        // .required("An email is required"),
         password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
         }),
-    handleSubmit(values, { resetForm, setSubmitting, setStatus }) {
+
+    handleSubmit(values, { resetForm, setSubmitting, setStatus, props }) {
         setSubmitting(true);
-        axios
-            .post("https://reqres.in/api/users", values)
+
+        axiosWithAuth
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 setStatus("success");
                 resetForm();
                 setSubmitting(false);
+                props.history.push("/login")
+                
+
             })
             .catch(err => {
                 setStatus("failed")
@@ -239,5 +247,4 @@ const FormikLoginForm = withFormik({
             });
     }
 })(LoginForm)
-
 export default FormikLoginForm;

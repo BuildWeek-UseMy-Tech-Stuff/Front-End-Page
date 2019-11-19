@@ -3,6 +3,8 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
 import axios from "axios";
+import {axiosWithAuth } from '../utils/axiosWithAuth'
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const UserForm = ({status }) => {
+const UserForm = ({status }, props) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -51,7 +53,7 @@ const UserForm = ({status }) => {
                     Sign In
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" placeholder="Username *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="username" placeholder="Username *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="password" name="password" autoComplete="new-password" placeholder="Password *" />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -83,7 +85,7 @@ const UserForm = ({status }) => {
         </Container>
     );
 };
-const LoginForm = withFormik({
+const FormikLoginForm = withFormik({
     mapPropsToValues({ username, password, }) {
         return {
             username: username || "",
@@ -91,20 +93,22 @@ const LoginForm = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
+        username: Yup.string().min(4, 'Too short!').max(16, 'Too Long!').required(),
         password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
     }),
-    handleSubmit(values, { setStatus, resetForm }) {
+    handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
-        axios
-            .post("https://reqres.in/api/users/", values)
+        axiosWithAuth()
+            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
+                localStorage.setItem('token', res.data.payload);
                 setStatus(res.data);
-                console.log(res);
+                console.log(res.data);
                 resetForm();
+                props.history.push("/TechList")
             })
             .catch(err => console.log(err.response));
     }
 })(UserForm);
 
-export default LoginForm;
+export default FormikLoginForm;
