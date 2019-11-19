@@ -12,8 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import FormikCheckboxField from "formik-material-fields/lib/FormikCheckboxField";
 
-const UserForm = ({status }) => {
+const UserForm = ({ status, values }) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -48,15 +49,13 @@ const UserForm = ({status }) => {
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    Sign In
+                    Sign Up
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="username" placeholder="Username *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="new-username" placeholder="Username *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="password" name="password" autoComplete="new-password" placeholder="Password *" />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="email" name="email" autoComplete="new-email" placeholder="Email *" />
+                    <FormikCheckboxField variant="outlined" type ="checkbox" margin="normal" name="terms" value={false || values.terms} autoComplete="new-tos" placeholder="Checkbox *" label="Agree To Terms and Conditions" />
                     <Button
                         type="submit"
                         fullWidth
@@ -64,17 +63,12 @@ const UserForm = ({status }) => {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
+                        SIGN UP
           </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-              </Link>
-                        </Grid>
+                    <Grid container justify="center">
                         <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
+                            <Link href="/login" variant="body2">
+                                {"Already have an account? Login"}
                             </Link>
                         </Grid>
                     </Grid>
@@ -84,15 +78,22 @@ const UserForm = ({status }) => {
     );
 };
 const FormikLoginForm = withFormik({
-    mapPropsToValues({ username, password, }) {
+    mapPropsToValues({ username, password, email, terms }) {
         return {
             username: username || "",
             password: password || "",
+            email: email || "",
+            terms: true || terms,
+            
         };
     },
     validationSchema: Yup.object().shape({
         username: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
         password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
+        email: Yup.string().email().required(),
+        terms: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions'),
+        
+
     }),
     handleSubmit(values, { setStatus, resetForm }) {
         //values is our object with all our data on it
