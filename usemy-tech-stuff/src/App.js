@@ -24,11 +24,11 @@ function Copyright() {
 function App() {
   return (
     <div className="App">
-    {/* <Route path="/" component={Navigation} />
+    <Route path="/" component={Navigation} />
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
-    <Copyright/> */}
-   <TechList/>
+    <Copyright/>
+   {/* <TechList/> */}
     </div>
   );
 }
