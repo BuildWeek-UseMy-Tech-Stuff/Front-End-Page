@@ -28,7 +28,7 @@ function App() {
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
     <Copyright/>
-   {/* <TechList/> */}
+   <TechList/>
     </div>
   );
 }
