@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from "axios";
+import {axiosWithAuth } from '../utils/axiosWithAuth'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
@@ -224,15 +225,19 @@ const FormikLoginForm = withFormik({
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
         }),
+
     handleSubmit(values, { resetForm, setSubmitting, setStatus, props }) {
         setSubmitting(true);
-        axios
+
+        axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 setStatus("success");
                 resetForm();
                 setSubmitting(false);
                 props.history.push("/login")
+                
+
             })
             .catch(err => {
                 setStatus("failed")
