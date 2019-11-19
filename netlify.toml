@@ -1,6 +1,6 @@
 [build]
   command = "yarn run build"
-  publish="usemy-tech-stuff/build"
+  publish="usemy-tech-stuff/"
   base = "usemy-tech-stuff"
 
   [[redirects]]
