@@ -51,7 +51,7 @@ const UserForm = ({status }) => {
                     Sign In
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" placeholder="Username *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="username" placeholder="Username *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="password" name="password" autoComplete="new-password" placeholder="Password *" />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -83,7 +83,7 @@ const UserForm = ({status }) => {
         </Container>
     );
 };
-const LoginForm = withFormik({
+const FormikLoginForm = withFormik({
     mapPropsToValues({ username, password, }) {
         return {
             username: username || "",
@@ -100,11 +100,11 @@ const LoginForm = withFormik({
             .post("https://reqres.in/api/users/", values)
             .then(res => {
                 setStatus(res.data);
-                console.log(res);
+                console.log(res.data);
                 resetForm();
             })
             .catch(err => console.log(err.response));
     }
 })(UserForm);
 
-export default LoginForm;
+export default FormikLoginForm;

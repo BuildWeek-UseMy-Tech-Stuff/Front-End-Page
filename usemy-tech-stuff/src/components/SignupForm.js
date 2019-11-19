@@ -1,91 +1,87 @@
-import React from 'react';
-import { withFormik, Form, Field } from 'formik';
+import React, { useEffect } from 'react';
+import { withFormik, Form } from 'formik';
 import * as Yup from 'yup';
-import styled from 'styled-components';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from "axios";
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 5%;
-`
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import styled from 'styled-components';
+let submitting = false;
 const Flexbox = styled.div`
     display: flex;
-    margin: 5%;
     justify-content: center;
 `
-const useStyles = makeStyles(theme => ({
-    button: {
-      margin: theme.spacing(1),
-    },
-    input: {
-      display: 'none',
-    },
-  }));
-
-let submitting = false;
-
-function LoginForm({ values }) {
+function LoginForm() {
+    useEffect(() => {
+        submitting = false;
+    },[submitting])
+    const useStyles = makeStyles(theme => ({
+        '@global': {
+            body: {
+                backgroundColor: theme.palette.common.white,
+            },
+        },
+        paper: {
+            marginTop: theme.spacing(8),
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        },
+        avatar: {
+            margin: theme.spacing(1),
+            backgroundColor: theme.palette.secondary.main,
+        },
+        form: {
+            width: '100%', // Fix IE 11 issue.
+            marginTop: theme.spacing(1),
+        },
+        submit: {
+            margin: theme.spacing(3, 0, 2),
+        },
+        button: {
+            margin: theme.spacing(1),
+          },
+          input: {
+            display: 'none',
+          },
+    }));
     const classes = useStyles();
     return (
-        <Container>
-            <Form >
-                <Flexbox>
-                <div>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth name="email" label="Email" margin="normal" fullWidth/>
-                </div>
-                </Flexbox>
-                <Flexbox>
-                <div>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth name="username" label="Username" margin="normal" fullWidth/>
-                </div>
-                </Flexbox>
-                <Flexbox>
-                <div>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth name="password" label="Password" margin="normal" fullWidth/>
-                </div>
-                </Flexbox>
-                <Flexbox>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                            defaultChecked
-                            color="default"
-                            value={values.tos}
-                            inputProps={{
-                            'aria-label': 'checkbox with default color',
-                            }}
-                        />
-                        }
-                        label="I accept the terms and conditions"
-                    />
-                </Flexbox>
-                {
-                (submitting === true)
-                    ? console.log(submitting)
-                    : <div>Data submitted</div>
-                }
-                <Flexbox>
-                    <Button type="submit" variant="contained" color="primary" className={classes.button}>Submit!</Button>
-                </Flexbox>
-            </Form>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
+            <div className={classes.paper}>
+                <Typography component="h1" variant="h5">
+                        Sign Up
+                </Typography>
+                <Form className={classes.form} noValidate>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="email" label="Email *" margin="normal" fullWidth/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="username" label="Username *" margin="normal" fullWidth/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="password" label="Password *" margin="normal" fullWidth/>
+                    <Flexbox>
+                    {
+                    (submitting === true)
+                        ? <CircularProgress color="primary"></CircularProgress>
+                        : null
+                    }
+                    </Flexbox>
+                    <div>
+                        <Button type="submit" variant="contained" fullWidth color="primary" className={classes.submit}>Submit!</Button>
+                    </div>
+                </Form>
+            </div>
         </Container>
     );
 }
-
 const FormikLoginForm = withFormik({
-    mapPropsToValues({username, email, password, tos}) {
+    mapPropsToValues({username, email, password}) {
         return {
             username: username || "",
             email: email || "",
             password: password || "",
-            tos: tos || false
         };
     },
     validationSchema: Yup.object().shape({
@@ -98,14 +94,14 @@ const FormikLoginForm = withFormik({
         password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
-        tos: Yup.boolean()
-        .oneOf([true], 'You Must Accept the Terms and Conditions'),
         }),
     handleSubmit(values, { resetForm, setSubmitting }) {
         submitting = true;
+        console.log(values)
         axios
             .post("https://reqres.in/api/users", values)
             .then(res => {
+                console.log(res);
                 resetForm();
                 setSubmitting(false);
                 submitting = false;
@@ -116,5 +112,4 @@ const FormikLoginForm = withFormik({
             });
     }
 })(LoginForm)
-
 export default FormikLoginForm;
