@@ -9,7 +9,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // MaterialUI
 
+const useStyles = makeStyles( theme => ({
 
+    img: {
+        width: '10%',
+    },
+
+
+}))
 
 
 
@@ -20,6 +27,8 @@ const TechCard = props => {
     console.log(props.tech.name, "tech")
     console.log(props.tech.id)
     
+    const classes = useStyles();
+
     const [date, setDate] = useState({
         startDate: "",
         endDate:""
@@ -36,7 +45,7 @@ const TechCard = props => {
         {props.tech.description}
         {props.tech.categroy}
         {props.tech.dailyPrice}
-        <img className ="tech-img" src ={props.tech.imgUrl}/>
+        <img className ={classes.img} src ={props.tech.imgUrl}/>
         <form>
         <input 
             type = "date"
