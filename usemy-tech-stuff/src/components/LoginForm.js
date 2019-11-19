@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const UserForm = ({status }) => {
+const UserForm = ({status }, props) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -96,7 +96,7 @@ const FormikLoginForm = withFormik({
         username: Yup.string().min(4, 'Too short!').max(16, 'Too Long!').required(),
         password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
     }),
-    handleSubmit(values, { setStatus, resetForm }) {
+    handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
         axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
@@ -105,6 +105,7 @@ const FormikLoginForm = withFormik({
                 setStatus(res.data);
                 console.log(res.data);
                 resetForm();
+                props.history.push("/TechList")
             })
             .catch(err => console.log(err.response));
     }

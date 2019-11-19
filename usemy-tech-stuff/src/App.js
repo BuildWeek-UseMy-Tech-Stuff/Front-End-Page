@@ -21,7 +21,7 @@ function Copyright() {
     </Typography>
   );
 }
-function App() {
+function App(props) {
   return (
     <div className="App">
     <Route path="/" component={Navigation} />

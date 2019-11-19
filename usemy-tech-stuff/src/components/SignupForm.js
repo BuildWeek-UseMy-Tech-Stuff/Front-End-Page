@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { withFormik, Form } from 'formik';
+import { Link } from "react-router-dom"
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from "axios";
@@ -15,7 +16,8 @@ const Flexbox = styled.div`
     display: flex;
     justify-content: center;
 `
-const LoginForm= props => {
+const LoginForm = (props) => {
+    console.log("Props", props)
     useEffect(() => {
         submitting = false;
     },[submitting])
@@ -82,6 +84,7 @@ const FormikLoginForm = withFormik({
             username: username || "",
             // email: email || "",
             password: password || "",
+        
         };
     },
     validationSchema: Yup.object().shape({
@@ -95,9 +98,9 @@ const FormikLoginForm = withFormik({
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
         }),
-    handleSubmit(values, { resetForm, setSubmitting }) {
+    handleSubmit(values, { resetForm, setSubmitting, props }) {
         submitting = true;
-        console.log(values)
+        console.log("values" ,values)
         axios
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
@@ -105,7 +108,8 @@ const FormikLoginForm = withFormik({
                 resetForm();
                 setSubmitting(false);
                 submitting = false;
-            
+                props.history.push("/login")
+                
             })
             .catch(err => {
                 console.log(err); // There was an error creating the data and logs to console
