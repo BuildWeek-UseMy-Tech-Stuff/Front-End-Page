@@ -1,7 +1,7 @@
 [build]
   command = "yarn run build"
-  publish="path-to-react-app/build"
-  base = "path-to-react-app"
+  publish="usemy-tech-stuff/build"
+  base = "usemy-tech-stuff"
 
   [[redirects]]
   from = "/*"
