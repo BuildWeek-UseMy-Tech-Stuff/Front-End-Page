@@ -10,14 +10,11 @@ import { FormikTextField } from 'formik-material-fields';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
-
 let submitting = false;
-
 const Flexbox = styled.div`
     display: flex;
     justify-content: center;
 `
-
 function LoginForm() {
     useEffect(() => {
         submitting = false;
@@ -79,7 +76,6 @@ function LoginForm() {
         </Container>
     );
 }
-
 const FormikLoginForm = withFormik({
     mapPropsToValues({username, email, password}) {
         return {
@@ -116,5 +112,4 @@ const FormikLoginForm = withFormik({
             });
     }
 })(LoginForm)
-
 export default FormikLoginForm;
