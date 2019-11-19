@@ -2,9 +2,8 @@ import data from "../data"
 import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE } from '../actions/index'
 
 
- console.log (data);
 const initialState = {
-    tech: data,
+    tech: [],
      isFetching: false,      
      error: ''
     
@@ -25,7 +24,7 @@ const reducer = (state =initialState, action) => {
               ...state,
               isFetching: false,
               error: '',
-              smurfs: action.payload
+              tech: action.payload
             };
           case FETCH_FAILURE:
             return {
@@ -37,7 +36,7 @@ const reducer = (state =initialState, action) => {
 
 
         default:
-        return {...state};
+        return state;
     }
   
 }

@@ -29,7 +29,7 @@ function App(props) {
     <Route path="/signup" component={SignupForm} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
     <Copyright/>
-   {/* <TechList/> */}
+   <TechList/>
     </div>
   );
 }
