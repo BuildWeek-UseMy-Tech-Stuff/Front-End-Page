@@ -44,7 +44,7 @@ const TechCard = props => {
 
 
         {props.tech.text}
-        <button>add</button>
+        <button>rent</button>
 
 
 
