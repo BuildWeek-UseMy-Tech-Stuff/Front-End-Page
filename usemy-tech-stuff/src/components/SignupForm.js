@@ -210,7 +210,7 @@ const FormikLoginForm = withFormik({
     mapPropsToValues({username, email, password}) {
         return {
             username: username || "",
-            // email: email || "",
+            email: email || "",
             password: password || "",
         
         };
@@ -219,9 +219,9 @@ const FormikLoginForm = withFormik({
         username: Yup.string()
         .max(16, "Username cannot be more than 16 characters")
         .required("A username is required"),
-        // email: Yup.string()
-        // .email("Please use a valid email address")
-        // .required("An email is required"),
+        email: Yup.string()
+        .email("Please use a valid email address")
+        .required("An email is required"),
         password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),

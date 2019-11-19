@@ -12,7 +12,7 @@ export const fetchTechListing = () => dispatch => {
     dispatch({ type: START_FETCHING });
     axios
         .get(
-            "https://cors-anywhere.herokuapp.com/https://cat-fact.herokuapp.com/facts"
+            "https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals"
         )
         .then(res => { console.log(res);
         dispatch({ type: FETCH_SUCCESS, payload: res.data.all})})
