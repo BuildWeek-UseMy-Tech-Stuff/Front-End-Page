@@ -141,6 +141,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
     const classes = useStyles();
     
     return (
+
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div className={classes.paper}>
@@ -200,10 +201,10 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                     </div>
                 </Form>
             </div>
+
         </Container>
     );
 }
-
 const FormikLoginForm = withFormik({
     mapPropsToValues({username, email, password}) {
         return {
@@ -239,5 +240,4 @@ const FormikLoginForm = withFormik({
             });
     }
 })(LoginForm)
-
 export default FormikLoginForm;
