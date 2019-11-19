@@ -185,7 +185,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                             onClose={handleClose}
                             variant="error"
                             message="Account creation failed"
-                            /></Snackbar> : <Snackbar
+                            /></Snackbar> : (status === "success") ? <Snackbar
                             anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'left',
@@ -198,7 +198,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                             onClose={handleClose}
                             variant="success"
                             message="Account successfully created"
-                            /></Snackbar>
+                            /></Snackbar> : null
                         }
                     </div>
                 </Form>
@@ -229,7 +229,8 @@ const FormikLoginForm = withFormik({
         .max(16, "Password cannot be more than 16 characters")
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
-        phone_number: Yup.string().matches(phoneRegExp, 'Phone number is not valid')
+        phone_number: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+        location: Yup.string()
         }),
 
     handleSubmit(values, { resetForm, setSubmitting, setStatus, props }) {
