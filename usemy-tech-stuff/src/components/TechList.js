@@ -20,7 +20,7 @@ const TechList = (props) => {
             {console.log(props.tech, "return")}
 
              {props.tech.map(item => (
-                <TechCard  key ={item.id} tech ={item} />
+                <TechCard  key ={item.user_id} tech ={item} />
             ))} 
 
 {/*             

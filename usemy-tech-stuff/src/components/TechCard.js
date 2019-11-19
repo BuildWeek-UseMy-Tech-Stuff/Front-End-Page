@@ -41,18 +41,10 @@ const TechCard = props => {
     return (
     
     <div>
-
-
-        {props.tech.text}
-        <button>rent</button>
-
-
-
-        {/* {props.tech.name}
-        {props.tech.description}
+        {props.tech.item_name}
+        {props.tech.item_description}
         {props.tech.categroy}
-        {props.tech.dailyPrice}
-        <img className ={classes.img} src ={props.tech.imgUrl}/>
+        {props.tech.rate}
         <form>
         <input 
             type = "date"
@@ -70,7 +62,7 @@ const TechCard = props => {
             placeholder="Enter end date"
         />
         </form>
-        <button>rent this item</button> */}
+        <button>rent this item</button> 
     </div>
 
     )
