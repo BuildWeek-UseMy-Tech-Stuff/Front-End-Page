@@ -3,6 +3,8 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
 import axios from "axios";
+import {axiosWithAuth } from '../utils/axiosWithAuth'
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -91,14 +93,15 @@ const FormikLoginForm = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
+        username: Yup.string().min(4, 'Too short!').max(16, 'Too Long!').required(),
         password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
     }),
     handleSubmit(values, { setStatus, resetForm }) {
         //values is our object with all our data on it
-        axios
-            .post("https://reqres.in/api/users/", values)
+        axiosWithAuth()
+            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
+                localStorage.setItem('token', res.data.payload);
                 setStatus(res.data);
                 console.log(res.data);
                 resetForm();

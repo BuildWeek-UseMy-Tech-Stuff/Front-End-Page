@@ -1,7 +1,7 @@
 import React from 'react';
 import SignupForm from './components/SignupForm.js';
 
-
+import PrivateRoute from './components/PrivateRoute'
 import { Route } from "react-router-dom"
 import Navigation from "./components/Navigation"
 import LoginForm from "./components/LoginForm"
@@ -27,6 +27,7 @@ function App() {
     <Route path="/" component={Navigation} />
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
+    <PrivateRoute exact path ="/TechList" component = {TechList} />
     <Copyright/>
    {/* <TechList/> */}
     </div>

@@ -15,7 +15,7 @@ const Flexbox = styled.div`
     display: flex;
     justify-content: center;
 `
-function LoginForm() {
+const LoginForm= props => {
     useEffect(() => {
         submitting = false;
     },[submitting])
@@ -80,7 +80,7 @@ const FormikLoginForm = withFormik({
     mapPropsToValues({username, email, password}) {
         return {
             username: username || "",
-            email: email || "",
+            // email: email || "",
             password: password || "",
         };
     },
@@ -88,9 +88,9 @@ const FormikLoginForm = withFormik({
         username: Yup.string()
         .max(16, "Username cannot be more than 16 characters")
         .required("A username is required"),
-        email: Yup.string()
-        .email("Please use a valid email address")
-        .required("An email is required"),
+        // email: Yup.string()
+        // .email("Please use a valid email address")
+        // .required("An email is required"),
         password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),
@@ -99,12 +99,13 @@ const FormikLoginForm = withFormik({
         submitting = true;
         console.log(values)
         axios
-            .post("https://reqres.in/api/users", values)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 console.log(res);
                 resetForm();
                 setSubmitting(false);
                 submitting = false;
+            
             })
             .catch(err => {
                 console.log(err); // There was an error creating the data and logs to console
