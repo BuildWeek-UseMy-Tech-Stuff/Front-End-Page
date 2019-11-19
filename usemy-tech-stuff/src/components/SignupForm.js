@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
-import * as Yup from "yup";
-import { FormikTextField } from "formik-material-fields"
+import React, { useEffect } from 'react';
+import { withFormik, Form } from 'formik';
+import * as Yup from 'yup';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import axios from "axios";
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import { FormikTextField } from 'formik-material-fields';
+import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import FormikCheckboxField from "formik-material-fields/lib/FormikCheckboxField";
-
-const UserForm = ({ status, values }) => {
+import styled from 'styled-components';
+let submitting = false;
+const Flexbox = styled.div`
+    display: flex;
+    justify-content: center;
+`
+function LoginForm() {
+    useEffect(() => {
+        submitting = false;
+    },[submitting])
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -38,74 +42,74 @@ const UserForm = ({ status, values }) => {
         submit: {
             margin: theme.spacing(3, 0, 2),
         },
+        button: {
+            margin: theme.spacing(1),
+          },
+          input: {
+            display: 'none',
+          },
     }));
     const classes = useStyles();
-    const [people, setPeople] = useState([]);
-    useEffect(() => {
-        status && setPeople(people => [...people, status]);
-    }, [status]);
     return (
-        <Container componenet="main" maxWidth="xs">
-            <CssBaseline />
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
-                    Sign Up
+                        Sign Up
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="username" autoComplete="new-username" placeholder="Username *" />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="password" name="password" autoComplete="new-password" placeholder="Password *" />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="email" name="email" autoComplete="new-email" placeholder="Email *" />
-                    <FormikCheckboxField variant="outlined" type ="checkbox" margin="normal" name="terms" value={false || values.terms} autoComplete="new-tos" placeholder="Checkbox *" label="Agree To Terms and Conditions" />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        SIGN UP
-          </Button>
-                    <Grid container justify="center">
-                        <Grid item>
-                            <Link href="/login" variant="body2">
-                                {"Already have an account? Login"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="email" label="Email *" margin="normal" fullWidth/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="username" label="Username *" margin="normal" fullWidth/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="password" label="Password *" margin="normal" fullWidth/>
+                    <Flexbox>
+                    {
+                    (submitting === true)
+                        ? <CircularProgress color="primary"></CircularProgress>
+                        : null
+                    }
+                    </Flexbox>
+                    <div>
+                        <Button type="submit" variant="contained" fullWidth color="primary" className={classes.submit}>Submit!</Button>
+                    </div>
                 </Form>
             </div>
         </Container>
     );
-};
+}
 const FormikLoginForm = withFormik({
-    mapPropsToValues({ username, password, email, terms }) {
+    mapPropsToValues({username, email, password}) {
         return {
             username: username || "",
-            password: password || "",
             email: email || "",
-            terms: true || terms,
-            
+            password: password || "",
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
-        password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
-        email: Yup.string().email().required(),
-        terms: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions'),
-        
-
-    }),
-    handleSubmit(values, { setStatus, resetForm }) {
-        //values is our object with all our data on it
+        username: Yup.string()
+        .max(16, "Username cannot be more than 16 characters")
+        .required("A username is required"),
+        email: Yup.string()
+        .email("Please use a valid email address")
+        .required("An email is required"),
+        password: Yup.string()
+        .min(8, "Password must be at least 8 characters")
+        .required("A password is required"),
+        }),
+    handleSubmit(values, { resetForm, setSubmitting }) {
+        submitting = true;
+        console.log(values)
         axios
-            .post("https://reqres.in/api/users/", values)
+            .post("https://reqres.in/api/users", values)
             .then(res => {
-                setStatus(res.data);
-                console.log(res.data);
+                console.log(res);
                 resetForm();
+                setSubmitting(false);
+                submitting = false;
             })
-            .catch(err => console.log(err.response));
+            .catch(err => {
+                console.log(err); // There was an error creating the data and logs to console
+                setSubmitting(false);
+            });
     }
-})(UserForm);
-
+})(LoginForm)
 export default FormikLoginForm;
