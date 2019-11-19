@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "app-folder-name",
+  "builds": [
+    {
+      "src": "usemytech-stuff/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "app-folder-name/$1" }]
