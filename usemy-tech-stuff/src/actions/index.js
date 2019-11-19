@@ -10,12 +10,12 @@ export const FETCH_FAILURE = "FETCH_FAILURE";
 // TechListing get
 export const fetchTechListing = () => dispatch => {
     dispatch({ type: START_FETCHING });
-    axios
+    axiosWithAuth()
         .get(
             "https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals"
         )
         .then(res => { console.log(res);
-        dispatch({ type: FETCH_SUCCESS, payload: res.data.all})})
+        dispatch({ type: FETCH_SUCCESS, payload: res.data})})
         .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
 }
 
