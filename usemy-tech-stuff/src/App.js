@@ -1,11 +1,11 @@
 import React from 'react';
 import SignupForm from './components/SignupForm.js';
-
 import PrivateRoute from './components/PrivateRoute'
 import { Route } from "react-router-dom"
 import Navigation from "./components/Navigation"
 import LoginForm from "./components/LoginForm"
 import TechList from "./components/TechList"
+import Dogs from "./components/Dogs"
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
@@ -27,6 +27,7 @@ function App(props) {
     <Route path="/" component={Navigation} />
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
+    <Route path="/dogs" component={Dogs} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
     <Copyright/>
    {/* <TechList/> */}
