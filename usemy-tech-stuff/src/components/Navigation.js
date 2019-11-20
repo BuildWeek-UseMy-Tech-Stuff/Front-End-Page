@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { lightBlue } from '@material-ui/core/colors';
 
 export default function Navbar(props) {
   const handleLogout = () => {
@@ -24,7 +25,7 @@ export default function Navbar(props) {
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: lightBlue[200]
     },
     form: {
       width: '100%', // Fix IE 11 issue.
@@ -83,6 +84,11 @@ export default function Navbar(props) {
               <NavLink className={`${classes.noDecor}`} to={`/EditAccount`}>
                 <Button>
                   Edit Account
+              </Button>
+              </NavLink>
+              <NavLink className={`${classes.noDecor}`} to={`/Account`}>
+                <Button>
+                  Account
               </Button>
               </NavLink>
 

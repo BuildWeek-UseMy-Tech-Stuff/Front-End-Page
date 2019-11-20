@@ -16,7 +16,7 @@ import clsx from 'clsx';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
-import { amber, green } from '@material-ui/core/colors';
+import { amber, green, lightBlue } from '@material-ui/core/colors';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
@@ -128,6 +128,9 @@ function LoginForm({ status, isValid, history }) {
         },
         submit: {
             margin: theme.spacing(3, 0, 2),
+            backgroundColor: lightBlue[200],
+    '&:hover': {
+      backgroundColor: lightBlue[300],}
         },
         button: {
             margin: theme.spacing(1),
