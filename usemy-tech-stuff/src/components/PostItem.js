@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
 
 const PostItem = ({ status }, props) => {
+    console.log(props, "post")
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -40,7 +41,7 @@ const PostItem = ({ status }, props) => {
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
-
+console.log("Props", props)
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -49,10 +50,10 @@ const PostItem = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" />
+                    {/* <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
-                    <FormikSelectField
+                    {/* <FormikSelectField
                         name="category"
                         label="Category"
                         margin="normal"
@@ -64,7 +65,7 @@ const PostItem = ({ status }, props) => {
                         ]}
                         fullWidth
                         native
-                    />
+                    /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
 
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="image_url" autoComplete="Image" placeholder="Add Image URL Here *" />
@@ -86,23 +87,18 @@ const PostItem = ({ status }, props) => {
 };
 
 
-const mapStateToProps = state => {
-    
-    return {
-        user_id: state.user_id 
-        
-    }
-}
+
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ user_id, item_name, item_description, rate, image_url }) {
+    mapPropsToValues({ item_name, item_description, rate, image_url, userId }) {
         return {
-            user_id: user_id || "",
+         
             item_name: item_name || "",
             item_description: item_description || "",
             rate: rate || "",
-            image_url: image_url || "",
+            img_url: image_url || "",
+            user_id: userId  || ""
         };
     },
 
@@ -112,11 +108,12 @@ const FormikPostItem = withFormik({
 
     }),
 
-    handleSubmit(values, { setStatus, resetForm, props, user_id }) {
+    handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
+        console.log("props in post request", values)
     
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values, user_id)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values )
             .then(res => {
                 
                 setStatus(res.data);
@@ -128,5 +125,14 @@ const FormikPostItem = withFormik({
             .catch(err => console.log(err.response));
     }
 })(PostItem);
+
+
+const mapStateToProps = state => {
+    
+    return {
+        userId: state.userId 
+        
+    }
+}
 
 export default connect(mapStateToProps, {})(FormikPostItem);

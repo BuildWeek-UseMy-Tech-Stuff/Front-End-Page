@@ -14,10 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
-import { storeUserId } from "../actions"
+import { storeUserId } from "../actions/index"
 
 
 const UserForm = ({status }, props) => {
+
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -88,16 +89,12 @@ const UserForm = ({status }, props) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        userId: state.userId
-    }
-}
 const FormikLoginForm = withFormik({
-    mapPropsToValues({ username, password, }) {
+    mapPropsToValues({ username, password, storeUserId }) {
         return {
             username: username || "",
             password: password || "",
+            storeUserId: storeUserId
         };
     },
     validationSchema: Yup.object().shape({
@@ -112,7 +109,7 @@ const FormikLoginForm = withFormik({
            
                 localStorage.setItem('token', res.data.token);
                 
-                storeUserId(res.data.user_id)
+                values.storeUserId(res.data.user_id);
                 
                 setStatus(res.data);
                 
@@ -122,5 +119,11 @@ const FormikLoginForm = withFormik({
             .catch(err => console.log(err.response));
     }
 })(UserForm);
+
+const mapStateToProps = state => {
+    return {
+        userId: state.userId
+    }
+}
 
 export default connect(mapStateToProps, {storeUserId})(FormikLoginForm);

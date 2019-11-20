@@ -40,6 +40,8 @@ const TechCard = props => {
     }
 
     return (
+
+      
         <GridListTile style={{marginBottom: "5%"}} key={props.key} >
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <Grid style={{height: "96.5%"}} item xs>
