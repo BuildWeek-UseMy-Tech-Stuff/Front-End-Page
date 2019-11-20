@@ -1,9 +1,10 @@
 import data from "../data"
-import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE } from '../actions/index'
+import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_USERID } from '../actions/index'
 
 
 const initialState = {
     tech: [],
+    userId: "",
      isFetching: false,      
      error: ''
     
@@ -20,6 +21,7 @@ const reducer = (state =initialState, action) => {
                error: ''
            }
            case FETCH_SUCCESS:
+              console.log(action.payload, "payload1")
             return {
               ...state,
               isFetching: false,
@@ -32,11 +34,17 @@ const reducer = (state =initialState, action) => {
               error: action.payload,
               isFetching: false
             };
-       
+          case SET_USERID:
+              console.log(action.payload, "payload-id")
+            return { 
+              ...state, 
+              userId: action.payload
+            };
 
 
         default:
-        return state;
+          console.log("default")
+        return {...state};
     }
   
 }
