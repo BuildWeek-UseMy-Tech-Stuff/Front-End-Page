@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
-import {axiosWithAuth } from '../utils/axiosWithAuth'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 import axios from "axios";
+import { lightBlue } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,11 +14,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { connect} from "react-redux"
+import { connect } from "react-redux"
 import { storeUserId } from "../actions/index"
 
 
-const UserForm = ({status }, props) => {
+const UserForm = ({ status }, props) => {
 
     const useStyles = makeStyles(theme => ({
         '@global': {
@@ -41,6 +42,10 @@ const UserForm = ({status }, props) => {
         },
         submit: {
             margin: theme.spacing(3, 0, 2),
+            backgroundColor: lightBlue[200],
+            '&:hover': {
+                backgroundColor: lightBlue[300],
+            }
         },
     }));
     const classes = useStyles();
@@ -101,18 +106,18 @@ const FormikLoginForm = withFormik({
         username: Yup.string().min(4, 'Too short!').max(16, 'Too Long!').required(),
         password: Yup.string().min(8, 'Too short!').max(16, 'Too Long!').required(),
     }),
-    handleSubmit(values, { setStatus, resetForm ,props}) {
+    handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
         axios
             .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
-           
+
                 localStorage.setItem('token', res.data.token);
-                
+
                 values.storeUserId(res.data.user_id);
-                
+
                 setStatus(res.data);
-                
+
                 resetForm();
                 props.history.push("/TechList")
             })
@@ -126,4 +131,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {storeUserId})(FormikLoginForm);
+export default connect(mapStateToProps, { storeUserId })(FormikLoginForm);
