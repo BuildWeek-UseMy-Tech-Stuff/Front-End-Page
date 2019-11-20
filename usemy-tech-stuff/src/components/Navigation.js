@@ -85,6 +85,11 @@ export default function Navbar(props) {
                   Edit Account
               </Button>
               </NavLink>
+              <NavLink className={`${classes.noDecor}`} to={`/Account`}>
+                <Button>
+                  Account
+              </Button>
+              </NavLink>
 
               <Button className="navlink button" onClick={handleLogout}>
                 Logout
