@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
 import { lightBlue } from '@material-ui/core/colors';
-
 const PostItem = ({ status }, props) => {
     console.log(props, "post")
     const useStyles = makeStyles(theme => ({
@@ -42,7 +41,6 @@ const PostItem = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
-console.log("Props", props)
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -51,7 +49,6 @@ console.log("Props", props)
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    {/* <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="category" autoComplete="category" placeholder="Item's Category *" />
@@ -69,7 +66,7 @@ console.log("Props", props)
 
 
                 </Form>
-            </div>
+            </div>  
         </Container>
     );
 };
