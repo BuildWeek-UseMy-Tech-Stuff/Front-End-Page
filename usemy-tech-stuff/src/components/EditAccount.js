@@ -158,6 +158,8 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                 <Form className={classes.form}>
                         <FormikTextField variant="outlined" margin="normal" fullWidth name="email" autoComplete="email" label="Email *" type="text"/>
                         <FormikTextField variant="outlined" margin="normal" fullWidth name="username" autoComplete="username" placeholder="Username *" type="text"/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="location" autoComplete="username" placeholder="Location" type="text"/>
+                        <FormikTextField variant="outlined" margin="normal" fullWidth name="phone_number" autoComplete="phone_number" placeholder="Phone Number" type="text"/>
                         <FormikTextField variant="outlined" margin="normal" fullWidth name="password" label="Password *" type="password"/>
                     <div>
                         <Button onClick={handleClick} type="submit" variant="contained" fullWidth color="primary" className={classes.submit}>Submit!</Button>
@@ -212,11 +214,14 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
     );
 }
 const FormikLoginForm = withFormik({
-    mapPropsToValues({username, email, password}) {
+    mapPropsToValues({username, email, password, location, phone_number}) {
         return {
             username: username || "",
-            // email: email || "",
+            email: email || "",
             password: password || "",
+            location: location || "",
+            phone_number: phone_number || "",
+
         
         };
     },
@@ -224,9 +229,9 @@ const FormikLoginForm = withFormik({
         username: Yup.string()
         .max(16, "Username cannot be more than 16 characters")
         .required("A username is required"),
-        // email: Yup.string()
-        // .email("Please use a valid email address")
-        // .required("An email is required"),
+        email: Yup.string()
+        .email("Please use a valid email address")
+        .required("An email is required"),
         password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .required("A password is required"),

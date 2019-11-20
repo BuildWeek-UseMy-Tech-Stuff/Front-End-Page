@@ -20,8 +20,8 @@ const TechList = (props) => {
 
         <div>
            <GridList style={{justifyContent: "center"}}>
-            {props.tech.map(item => (
-                <TechCard key={item.id} tech ={item} />              
+            {props.tech.map((item, index) => (
+                <TechCard key={index} tech ={item} />              
             ))}
             </GridList>
 
