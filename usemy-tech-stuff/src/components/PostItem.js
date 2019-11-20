@@ -129,4 +129,4 @@ const FormikPostItem = withFormik({
     }
 })(PostItem);
 
-export default connect(mapStateToProps, {})(FormikLoginForm);
+export default connect(mapStateToProps, {})(FormikPostItem);
