@@ -99,7 +99,7 @@ const TechCard = props => {
                             'aria-label': 'change date',
                         }}
                         />
-                        <Button style={{marginBottom: "5%"}} size="small" color="primary">
+                        <Button style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>
