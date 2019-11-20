@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchTechListing } from '../actions'
 import TechCard from './TechCard'
-
+import Account from './Account'
 const TechList = (props) => {
 
     useEffect(() => {
@@ -17,16 +17,12 @@ const TechList = (props) => {
     return (
 
         <div>
-            {console.log(props.tech, "return")}
+            
 
              {props.tech.map(item => (
                 <TechCard  key ={item.user_id} tech ={item} />
             ))} 
-
-{/*             
-            {props.tech.map(item => (
-                <TechCard key ={item.id} tech ={item} />
-            ))} */}
+            <Account/>
 
         </div>
 

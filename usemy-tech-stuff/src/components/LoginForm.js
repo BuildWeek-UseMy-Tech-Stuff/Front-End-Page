@@ -14,6 +14,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { connect} from "react-redux"
+import { storeUserId } from "../actions"
+
 
 const UserForm = ({status }, props) => {
     const useStyles = makeStyles(theme => ({
@@ -85,6 +88,12 @@ const UserForm = ({status }, props) => {
         </Container>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        user_id: state.user_id
+    }
+}
 const FormikLoginForm = withFormik({
     mapPropsToValues({ username, password, }) {
         return {
@@ -98,13 +107,16 @@ const FormikLoginForm = withFormik({
     }),
     handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
-        axiosWithAuth()
+        axios
             .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
-                console.log(res, "token")
+           
                 localStorage.setItem('token', res.data.token);
+                
+                storeUserId(res.data.user_id)
+                
                 setStatus(res.data);
-                console.log(res.data);
+                
                 resetForm();
                 props.history.push("/TechList")
             })
@@ -112,4 +124,4 @@ const FormikLoginForm = withFormik({
     }
 })(UserForm);
 
-export default FormikLoginForm;
+export default connect(mapStateToProps, {storeUserId})(FormikLoginForm);

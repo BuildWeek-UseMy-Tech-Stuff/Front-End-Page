@@ -16,6 +16,8 @@ import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
 import { setState } from "expect/build/jestMatchersObject";
 
+import { connect} from "react-redux"
+
 const UserForm = ({ status }, props) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
@@ -55,9 +57,9 @@ const UserForm = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="itemname" autoComplete="item" placeholder="Item Name *" />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="itemdescription" autoComplete="description" placeholder="Item's Description *" />
-                    <FormikSelectField
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
+                    {/* <FormikSelectField
                         name="category"
                         label="Category"
                         margin="normal"
@@ -69,10 +71,10 @@ const UserForm = ({ status }, props) => {
                         ]}
                         fullWidth
                         native
-                    />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
+                    /> */}
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="price" placeholder="Daily Price $ *" />
                     
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
                         fullWidth
@@ -89,31 +91,43 @@ const UserForm = ({ status }, props) => {
         </Container>
     );
 };
+
+const mapStateToProps = state => {
+    
+    return {
+        user_id: state.user_id 
+        
+    }
+}
+
 const FormikLoginForm = withFormik({
-    mapPropsToValues({ itemname, itemdescription, price, ImageUrl }) {
+    mapPropsToValues({ item_name, item_description, rate, img_url }) {
         return {
-            itemname: itemname || "",
-            itemdescription: itemdescription || "",
-            price: price || "",
-            ImageUrl: ImageUrl || "",
+            item_name: item_name || "",
+            item_description: item_description || "",
+            rate: rate || "",
+            img_url: img_url || "",
+          
         };
     },
     
     validationSchema: Yup.object().shape({
-        itemname: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        itemdescription: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
-        price: Yup.number('Please Enter A Number').max(100, "Price must be less than $100 a day").typeError("Price must be a number").required().positive('Price Must be a Positive Number').integer(),
-        ImageUrl: Yup.string().url().required(),
+        // itemname: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
+        // itemdescription: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
+        // price: Yup.number('Please Enter A Number').max(100, "Price must be less than $100 a day").typeError("Price must be a number").required().positive('Price Must be a Positive Number').integer(),
+        // ImageUrl: Yup.string().url().required(),
     }),
 
-    handleSubmit(values, { setStatus, resetForm, props }) {
+    handleSubmit(values, { setStatus, resetForm, props, user_id }) {
         //values is our object with all our data on it
+    
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values, user_id)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
+                
                 setStatus(res.data);
-                console.log(res.data);
+                // console.log(res.data);       
+                // console.log(values, 'values')
                 resetForm();
                 props.history.push("/TechList")
             })
@@ -121,4 +135,4 @@ const FormikLoginForm = withFormik({
     }
 })(UserForm);
 
-export default FormikLoginForm;
+export default connect(mapStateToProps, {})(FormikLoginForm);

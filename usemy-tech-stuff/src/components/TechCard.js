@@ -45,6 +45,7 @@ const TechCard = props => {
         {props.tech.item_description}
         {props.tech.categroy}
         {props.tech.rate}
+        <img src = {props.tech.img_url} />
         <form>
         <input 
             type = "date"

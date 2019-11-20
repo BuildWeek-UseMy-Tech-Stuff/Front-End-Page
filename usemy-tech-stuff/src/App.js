@@ -11,7 +11,7 @@ import PostItem from "./components/PostItem"
 import EditPost from "./components/EditPost"
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-
+import Account from './components/Account'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
