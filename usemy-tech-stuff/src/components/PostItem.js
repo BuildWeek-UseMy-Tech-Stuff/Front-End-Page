@@ -110,7 +110,7 @@ const FormikPostItem = withFormik({
 
     handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
-        console.log("props in post request", values)
+        // console.log("props in post request", values)
     
         axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values )

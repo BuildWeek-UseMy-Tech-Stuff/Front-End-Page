@@ -5,6 +5,7 @@ import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID} from '../actions/i
 const initialState = {
     tech: [],
     userId: "",
+    postItems:[],
      isFetching: false,      
      error: ''
     

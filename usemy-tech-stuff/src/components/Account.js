@@ -15,8 +15,8 @@ function Account (props) {
 
         <div>
             
-           <Link to ={'/AddItem'}><button>add item button</button></Link>
-
+          <h1>account page</h1>
+            
         </div>
 
 
