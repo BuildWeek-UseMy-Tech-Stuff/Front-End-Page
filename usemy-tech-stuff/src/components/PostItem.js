@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Form, withFormik } from "formik";
 import * as Yup from "yup";
-import { FormikTextField, FormikSelectField } from "formik-material-fields"
+import { FormikTextField } from "formik-material-fields"
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -42,10 +42,6 @@ const PostItem = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
-    const [people, setPeople] = useState([]);
-    useEffect(() => {
-        status && setPeople(people => [...people, status]);
-    }, [status]);
 console.log("Props", props)
     return (
         <Container componenet="main" maxWidth="xs">

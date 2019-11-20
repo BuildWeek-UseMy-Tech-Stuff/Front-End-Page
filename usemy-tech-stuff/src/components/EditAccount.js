@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withFormik, Form } from 'formik';
-import { Link } from "react-router-dom"
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import axios from "axios";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormikTextField } from 'formik-material-fields';
@@ -88,7 +86,7 @@ MySnackbarContentWrapper.propTypes = {
     variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
+function LoginForm({ status, isSubmitting, isValid }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -107,9 +105,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
     };
 
 
-    useEffect(() => {
-        setSubmitting(false);
-    },[isSubmitting])
+  
 
     const useStyles = makeStyles(theme => ({
         '@global': {
