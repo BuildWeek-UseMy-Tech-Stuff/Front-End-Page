@@ -5,7 +5,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 export const START_FETCHING = 'START_FETCHING'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = "FETCH_FAILURE";
-export const SET_ID = 'SET_ID';
+export const SET_USERID = "SET_USERID"
 // export const FETCH_CREATERENTPOST_SUCCESS = "FETCH_CREATERENTPOST_SUCCESS"
 
 
@@ -13,9 +13,9 @@ export const SET_ID = 'SET_ID';
 
 
 
-export const storeUserId = user_id => { 
-    console.log("does this work", user_id)
-    return { type: SET_ID, payload: user_id}
+export const storeUserId = id=> { 
+    console.log("does this work", id)
+    return { type: SET_USERID, payload: id}
 }
 
 

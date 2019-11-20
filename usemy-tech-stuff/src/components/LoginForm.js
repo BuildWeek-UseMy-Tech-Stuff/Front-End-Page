@@ -91,7 +91,7 @@ const UserForm = ({status }, props) => {
 
 const mapStateToProps = state => {
     return {
-        user_id: state.user_id
+        userId: state.userId
     }
 }
 const FormikLoginForm = withFormik({
