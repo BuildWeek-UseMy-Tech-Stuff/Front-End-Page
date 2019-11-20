@@ -49,7 +49,7 @@ const TechCard = props => {
                     <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={props.tech.imgUrl}
+                        image={props.tech.img_url}
                         title={props.tech.category}
                     />
                     <CardContent>
@@ -98,7 +98,7 @@ const TechCard = props => {
                             'aria-label': 'change date',
                         }}
                         />
-                        <Button style={{marginBottom: "5%"}} size="small" color="primary">
+                        <Button style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>
