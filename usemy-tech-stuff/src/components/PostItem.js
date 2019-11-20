@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
 
 const PostItem = ({ status }, props) => {
+    console.log(props, "post")
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -40,7 +41,7 @@ const PostItem = ({ status }, props) => {
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
-
+console.log("Props", props)
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -65,9 +66,9 @@ const PostItem = ({ status }, props) => {
                         fullWidth
                         native
                     /> */}
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
 
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="image_url" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
                         fullWidth
@@ -90,28 +91,29 @@ const PostItem = ({ status }, props) => {
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ userId, item_name, item_description, price, ImageUrl }) {
+    mapPropsToValues({ item_name, item_description, rate, image_url, userId }) {
         return {
-            userId: userId || "",
+         
             item_name: item_name || "",
             item_description: item_description || "",
-            price: price || "",
-            ImageUrl: ImageUrl || "",
-            
+            rate: rate || "",
+            img_url: image_url || "",
+            user_id: userId  || ""
         };
     },
 
     validationSchema: Yup.object().shape({
         item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        // item_description: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
+        item_description: Yup.string().min(6, 'Too short!').max(144, 'Too Long!').required(),
 
     }),
 
     handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
+        console.log("props in post request", values)
     
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values )
             .then(res => {
                 
                 setStatus(res.data);
