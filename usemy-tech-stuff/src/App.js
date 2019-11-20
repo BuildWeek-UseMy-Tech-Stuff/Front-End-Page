@@ -37,6 +37,7 @@ function App(props) {
     <PrivateRoute exact path ="/EditAccount" component = {EditAccount} />
     <PrivateRoute exact path="/AddItem" component = {PostItem} />
     <PrivateRoute exact path="/EditPost" component = {EditPost} />
+    <PrivateRoute exact path="/Account/" component = {Account} />
     <Copyright/> 
     </div>
   );
