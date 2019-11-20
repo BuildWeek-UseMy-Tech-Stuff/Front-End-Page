@@ -53,21 +53,8 @@ console.log("Props", props)
                     {/* <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
-                    {/* <FormikSelectField
-                        name="category"
-                        label="Category"
-                        margin="normal"
-                        options={[
-                            { label: 'Computers', value: 0 },
-                            { label: 'Mobile Phones', value: 1 },
-                            { label: 'Cameras', value: 2 },
-                            { label: 'Audio Equipment', value: 3 },
-                        ]}
-                        fullWidth
-                        native
-                    /> */}
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="category" autoComplete="category" placeholder="Item's Category *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
-
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
@@ -91,11 +78,12 @@ console.log("Props", props)
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ item_name, item_description, rate, img_url, userId }) {
+    mapPropsToValues({ item_name, item_description, rate, img_url, userId, category }) {
         return {
          
             item_name: item_name || "",
             item_description: item_description || "",
+            category: category || "",
             rate: rate || "",
             img_url: img_url || "",
             user_id: userId  || ""
