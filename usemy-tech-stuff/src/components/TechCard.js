@@ -16,6 +16,7 @@ import '../App.css'
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    textAlign: "center",
   },
   media: {
     height: 140,
