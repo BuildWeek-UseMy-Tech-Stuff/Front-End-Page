@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
+import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField, FormikSelectField } from "formik-material-fields"
-import axios from "axios";
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Modal from '@material-ui/core/Modal';
-import { setState } from "expect/build/jestMatchersObject";
-
 import { connect} from "react-redux"
 
-const UserForm = ({ status }, props) => {
+const PostItem = ({ status }, props) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -48,7 +40,7 @@ const UserForm = ({ status }, props) => {
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
-  
+
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -57,24 +49,25 @@ const UserForm = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
-                    {/* <FormikSelectField
+                    <FormikSelectField
                         name="category"
                         label="Category"
                         margin="normal"
                         options={[
                             { label: 'Computers', value: 0 },
                             { label: 'Mobile Phones', value: 1 },
-                            { label: 'Cameras', value: 1 },
-                            { label: 'Audio Equipment', value: 1 },
+                            { label: 'Cameras', value: 2 },
+                            { label: 'Audio Equipment', value: 3 },
                         ]}
                         fullWidth
                         native
-                    /> */}
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="price" placeholder="Daily Price $ *" />
-                    
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
+
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
                         fullWidth
@@ -92,6 +85,7 @@ const UserForm = ({ status }, props) => {
     );
 };
 
+
 const mapStateToProps = state => {
     
     return {
@@ -100,22 +94,22 @@ const mapStateToProps = state => {
     }
 }
 
-const FormikLoginForm = withFormik({
-    mapPropsToValues({ item_name, item_description, rate, img_url }) {
+
+const FormikPostItem = withFormik({
+    mapPropsToValues({ user_id, item_name, item_description, price, ImageUrl }) {
         return {
+            user_id: user_id || "",
             item_name: item_name || "",
             item_description: item_description || "",
-            rate: rate || "",
-            img_url: img_url || "",
-          
+            price: price || "",
+            ImageUrl: ImageUrl || "",
         };
     },
-    
+
     validationSchema: Yup.object().shape({
-        // itemname: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        // itemdescription: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
-        // price: Yup.number('Please Enter A Number').max(100, "Price must be less than $100 a day").typeError("Price must be a number").required().positive('Price Must be a Positive Number').integer(),
-        // ImageUrl: Yup.string().url().required(),
+        item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
+        // item_description: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
+
     }),
 
     handleSubmit(values, { setStatus, resetForm, props, user_id }) {
@@ -133,6 +127,6 @@ const FormikLoginForm = withFormik({
             })
             .catch(err => console.log(err.response));
     }
-})(UserForm);
+})(PostItem);
 
 export default connect(mapStateToProps, {})(FormikLoginForm);

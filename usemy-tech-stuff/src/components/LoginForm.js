@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
-import axios from "axios";
 import {axiosWithAuth } from '../utils/axiosWithAuth'
 
 import Button from '@material-ui/core/Button';
