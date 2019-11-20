@@ -15,7 +15,7 @@ import Link from '@material-ui/core/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center" style={{marginBottom: "2%"}}>
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/BuildWeek-UseMy-Tech-Stuff">
         Use My Tech

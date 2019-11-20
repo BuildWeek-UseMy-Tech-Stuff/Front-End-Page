@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchTechListing } from '../actions'
 import TechCard from './TechCard'
+import GridList from '@material-ui/core/GridList';
 
 const TechList = (props) => {
 
@@ -17,17 +18,11 @@ const TechList = (props) => {
     return (
 
         <div>
-            {console.log(props.tech, "return")}
-
-             {props.tech.map(item => (
-                <TechCard  key ={item.user_id} tech ={item} />
-            ))} 
-
-{/*             
+           <GridList style={{justifyContent: "center"}}>
             {props.tech.map(item => (
-                <TechCard key ={item.id} tech ={item} />
-            ))} */}
-
+                <TechCard key={item.id} tech ={item} />
+            ))}
+            </GridList>
         </div>
 
     )
