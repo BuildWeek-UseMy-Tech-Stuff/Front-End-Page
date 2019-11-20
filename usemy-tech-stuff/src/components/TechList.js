@@ -1,10 +1,19 @@
-import React from "react";
-import {connect} from 'react-redux'
+import React, { useEffect } from "react";
+import { connect } from 'react-redux'
+
+import { fetchTechListing } from '../actions'
 import TechCard from './TechCard'
 import GridList from '@material-ui/core/GridList';
 
-const TechList = props => {
-    console.log(props, "techlist")
+const TechList = (props) => {
+
+    useEffect(() => {
+        props.fetchTechListing()
+    }, []);
+
+    if (props.isFetching) {
+        return <h2>Loading Data</h2>
+    }
 
     return (
 
@@ -17,14 +26,16 @@ const TechList = props => {
         </div>
 
     )
-
+        
 }
 
 const mapStateToProps = state => {
     return {
-        tech: state.tech
+        tech: state.tech,
+        isFetching: state.isFetching,
+        error: state.error,
     }
 }
 
 
-export default connect(mapStateToProps, {})(TechList);
+export default connect(mapStateToProps, {fetchTechListing})(TechList);

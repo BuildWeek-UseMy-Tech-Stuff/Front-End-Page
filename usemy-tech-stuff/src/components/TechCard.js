@@ -24,8 +24,8 @@ const useStyles = makeStyles({
 
 const TechCard = props => {
     console.log(props.tech, "TechCard")
-    console.log(props.tech.name, "tech")
-    console.log(props.tech.id)
+    // console.log(props.tech.name, "tech")
+    // console.log(props.tech.id)
     
     const classes = useStyles();
 

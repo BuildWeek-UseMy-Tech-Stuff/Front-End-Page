@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation"
 import LoginForm from "./components/LoginForm"
 import TechList from "./components/TechList"
 import Dogs from "./components/Dogs"
+import Morties from "./components/Morty"
 import PostItem from "./components/PostItem"
 import EditPost from "./components/EditPost"
 import Typography from '@material-ui/core/Typography';
@@ -31,6 +32,7 @@ function App(props) {
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
     <Route path="/dogs" component={Dogs} />
+    <Route path="/morties" component={Morties} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
     <PrivateRoute exact path ="/EditAccount" component = {EditAccount} />
     <PrivateRoute exact path="/AddItem" component = {PostItem} />

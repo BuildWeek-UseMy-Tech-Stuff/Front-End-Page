@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
-import axios from "axios";
 import {axiosWithAuth } from '../utils/axiosWithAuth'
 
 import Button from '@material-ui/core/Button';
@@ -99,9 +98,10 @@ const FormikLoginForm = withFormik({
     handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
+            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com//api/rentals/create", values)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
+                console.log(res, "token")
+                localStorage.setItem('token', res.data.token);
                 setStatus(res.data);
                 console.log(res.data);
                 resetForm();
