@@ -81,11 +81,6 @@ export default function Navbar(props) {
               Rent Out Your Item
               </Button>
             </NavLink>
-              <NavLink className={`${classes.noDecor}`} to={`/EditAccount`}>
-                <Button>
-                  Edit Account
-              </Button>
-              </NavLink>
               <NavLink className={`${classes.noDecor}`} to={`/Account`}>
                 <Button>
                   Account

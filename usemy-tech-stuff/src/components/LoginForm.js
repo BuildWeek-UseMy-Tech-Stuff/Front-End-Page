@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
+import React from "react";
+import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
-import { axiosWithAuth } from '../utils/axiosWithAuth'
 import axios from "axios";
 import { lightBlue } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
@@ -49,10 +48,6 @@ const UserForm = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
-    const [people, setPeople] = useState([]);
-    useEffect(() => {
-        status && setPeople(people => [...people, status]);
-    }, [status]);
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />

@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import GridListTile from '@material-ui/core/GridListTile';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import { KeyboardDatePicker } from '@material-ui/pickers';
 import '../App.css'
 
 const useStyles = makeStyles({
