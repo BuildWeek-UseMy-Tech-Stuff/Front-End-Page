@@ -21,6 +21,7 @@ import { amber, green } from '@material-ui/core/colors';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
+import { lightBlue } from '@material-ui/core/colors';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -132,6 +133,10 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
         },
         submit: {
             margin: theme.spacing(3, 0, 2),
+            backgroundColor: lightBlue[200],
+            '&:hover': {
+                backgroundColor: lightBlue[300],
+            }
         },
         button: {
             margin: theme.spacing(1),

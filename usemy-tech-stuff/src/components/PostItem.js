@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
+import { lightBlue } from '@material-ui/core/colors';
 
 const PostItem = ({ status }, props) => {
     console.log(props, "post")
@@ -34,6 +35,10 @@ const PostItem = ({ status }, props) => {
         },
         submit: {
             margin: theme.spacing(3, 0, 2),
+            backgroundColor: lightBlue[200],
+            '&:hover': {
+                backgroundColor: lightBlue[300],
+            }
         },
     }));
     const classes = useStyles();
