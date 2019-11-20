@@ -49,10 +49,10 @@ const PostItem = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" />
+                    {/* <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
-                    <FormikSelectField
+                    {/* <FormikSelectField
                         name="category"
                         label="Category"
                         margin="normal"
@@ -64,7 +64,7 @@ const PostItem = ({ status }, props) => {
                         ]}
                         fullWidth
                         native
-                    />
+                    /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
 
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
@@ -86,23 +86,18 @@ const PostItem = ({ status }, props) => {
 };
 
 
-const mapStateToProps = state => {
-    
-    return {
-        user_id: state.user_id 
-        
-    }
-}
+
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ user_id, item_name, item_description, price, ImageUrl }) {
+    mapPropsToValues({ userId, item_name, item_description, price, ImageUrl }) {
         return {
-            user_id: user_id || "",
+            userId: userId || "",
             item_name: item_name || "",
             item_description: item_description || "",
             price: price || "",
             ImageUrl: ImageUrl || "",
+            
         };
     },
 
@@ -112,11 +107,11 @@ const FormikPostItem = withFormik({
 
     }),
 
-    handleSubmit(values, { setStatus, resetForm, props, user_id }) {
+    handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
     
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values, user_id)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values)
             .then(res => {
                 
                 setStatus(res.data);
@@ -128,5 +123,14 @@ const FormikPostItem = withFormik({
             .catch(err => console.log(err.response));
     }
 })(PostItem);
+
+
+const mapStateToProps = state => {
+    
+    return {
+        userId: state.userId 
+        
+    }
+}
 
 export default connect(mapStateToProps, {})(FormikPostItem);

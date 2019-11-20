@@ -39,6 +39,8 @@ const TechCard = props => {
     }
 
     return (
+
+      
         <GridListTile style={{marginBottom: "5%"}} key={props.key} >
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <Grid style={{height: "96.5%"}} item xs>
@@ -49,12 +51,12 @@ const TechCard = props => {
                     <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={props.tech.imgUrl}
+                        image={props.tech.img_url}
                         title={props.tech.category}
                     />
                     <CardContent>
                         <Typography variant="h5" component="h5">
-                        {props.tech.name}
+                        {props.tech.item_name}
                         </Typography>
                         <Typography variant="h6" component="h6">
                         Category:<br/>
@@ -67,7 +69,7 @@ const TechCard = props => {
                         Item description:<br/>
                         </Typography>
                         <Typography variant="body" color="textSecondary" component="p">
-                        {props.tech.description}
+                        {props.tech.item_description}
                         </Typography>
                     </CardContent>
                     </CardActionArea>

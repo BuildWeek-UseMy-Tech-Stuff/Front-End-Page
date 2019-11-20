@@ -24,6 +24,8 @@ const TechList = (props) => {
                 <TechCard key={item.id} tech ={item} />
             ))}
             </GridList>
+
+            
         </div>
 
     )
