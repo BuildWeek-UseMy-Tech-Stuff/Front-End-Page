@@ -68,7 +68,7 @@ console.log("Props", props)
                     /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
 
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="image_url" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
                         fullWidth
@@ -91,13 +91,13 @@ console.log("Props", props)
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ item_name, item_description, rate, image_url, userId }) {
+    mapPropsToValues({ item_name, item_description, rate, img_url, userId }) {
         return {
          
             item_name: item_name || "",
             item_description: item_description || "",
             rate: rate || "",
-            img_url: image_url || "",
+            img_url: img_url || "",
             user_id: userId  || ""
         };
     },
