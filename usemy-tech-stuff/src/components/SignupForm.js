@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { withFormik, Form } from 'formik';
 import * as Yup from 'yup';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -85,7 +85,7 @@ MySnackbarContentWrapper.propTypes = {
     variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
+function LoginForm({ status, isValid, history }) {
 
     const [open, setOpen] = React.useState(false);
 
@@ -98,15 +98,12 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
         return;
+        } else if(status === "success"){
+          history.push("/login")
         }
 
         setOpen(false);
     };
-
-
-    useEffect(() => {
-        setSubmitting(false);
-    },[isSubmitting])
 
     const useStyles = makeStyles(theme => ({
         '@global': {
@@ -191,7 +188,7 @@ function LoginForm({ status, setSubmitting, isSubmitting, isValid }) {
                             horizontal: 'left',
                             }}
                             open={open}
-                            autoHideDuration={6000}
+                            autoHideDuration={2000}
                             onClose={handleClose}
                         >
                             <MySnackbarContentWrapper
@@ -233,23 +230,16 @@ const FormikLoginForm = withFormik({
         location: Yup.string()
         }),
 
-    handleSubmit(values, { resetForm, setSubmitting, setStatus, props }) {
-        setSubmitting(true);
+    handleSubmit(values, { setStatus }) {
         setStatus("waiting");
         axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 setStatus("success");
-                resetForm();
-                setSubmitting(false);
-                setTimeout(() => {
-                  props.history.push("/login")
-                }, 1500);
             })
             .catch(err => {
                 setStatus("failed")
                 console.log(err); // There was an error creating the data and logs to console
-                setSubmitting(false);
             });
     }
 })(LoginForm)
