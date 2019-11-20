@@ -59,14 +59,14 @@ const TechCard = props => {
                         <Typography variant="h6" component="h6">
                         Category:<br/>
                         </Typography>
-                        <Typography variant="h7" component="h7">
+                        <Typography variant="h6" component="h6">
                         {props.tech.category}
                         </Typography>
                         <Typography variant="h6" component="h6">
                         <br/>
                         Item description:<br/>
                         </Typography>
-                        <Typography variant="body" color="textSecondary" component="p">
+                        <Typography variant="body1" color="textSecondary" component="p">
                         {props.tech.description}
                         </Typography>
                     </CardContent>
