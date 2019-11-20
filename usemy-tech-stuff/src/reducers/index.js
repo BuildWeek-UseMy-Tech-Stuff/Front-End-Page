@@ -52,11 +52,12 @@ const reducer = (state =initialState, action) => {
             }
 
           case FETCH_DELETE_TECHPOST_SUCCESS:
+              console.log(action.payload, "FETCH_DELETE_TECHPOST_SUCCESS")
             return {
               ...state,
               isFetching: false,
               error:"",
-
+              postItems: state.postItems.filter(e => e !== action.payload)
             }
 
         default:

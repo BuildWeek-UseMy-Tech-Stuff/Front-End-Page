@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import  { useEffect } from "react";
 import { connect } from 'react-redux'
 import { storeUserRentals } from '../actions'
+import { fetchDeleteTechPost } from "../actions"
 import {axiosWithAuth } from '../utils/axiosWithAuth'
 import { fetchTechListing } from '../actions'
 import MyRentals from "./MyRentals"
@@ -59,7 +60,7 @@ function Account (props) {
             <h1 style={{display: "flex", justifyContent: "center"}}>My rentals</h1>
             <GridList style={{justifyContent: "center"}}>
             {rentals.map(item => (
-                <MyRentals key={item.id} tech ={item} />              
+                <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost}/>              
             ))}
             </GridList>
         </div>
@@ -81,4 +82,4 @@ const mapStateToProps = state => {
 
 }
 // export default Account
-export default connect(mapStateToProps, {storeUserRentals}) (Account)
+export default connect(mapStateToProps, {storeUserRentals, fetchDeleteTechPost}) (Account)
