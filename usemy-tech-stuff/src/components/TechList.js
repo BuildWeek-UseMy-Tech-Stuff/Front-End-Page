@@ -21,7 +21,7 @@ const TechList = (props) => {
         <div>
            <GridList style={{justifyContent: "center"}}>
             {props.tech.map(item => (
-                <TechCard key={item.id} tech ={item} />
+                <TechCard key={item.id} tech ={item} />              
             ))}
             </GridList>
         </div>

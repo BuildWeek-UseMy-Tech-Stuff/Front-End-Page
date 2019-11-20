@@ -49,12 +49,12 @@ const TechCard = props => {
                     <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={props.tech.imgUrl}
+                        image={props.tech.img_url}
                         title={props.tech.category}
                     />
                     <CardContent>
                         <Typography variant="h5" component="h5">
-                        {props.tech.name}
+                        {props.tech.item_name}
                         </Typography>
                         <Typography variant="h6" component="h6">
                         Category:<br/>
@@ -66,8 +66,8 @@ const TechCard = props => {
                         <br/>
                         Item description:<br/>
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                        {props.tech.description}
+                        <Typography variant="body" color="textSecondary" component="p">
+                        {props.tech.item_description}
                         </Typography>
                     </CardContent>
                     </CardActionArea>

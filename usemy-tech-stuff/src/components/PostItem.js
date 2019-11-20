@@ -65,9 +65,9 @@ const PostItem = ({ status }, props) => {
                         fullWidth
                         native
                     />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
 
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="image_url" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
                         fullWidth
@@ -96,19 +96,19 @@ const mapStateToProps = state => {
 
 
 const FormikPostItem = withFormik({
-    mapPropsToValues({ user_id, item_name, item_description, price, ImageUrl }) {
+    mapPropsToValues({ user_id, item_name, item_description, rate, image_url }) {
         return {
             user_id: user_id || "",
             item_name: item_name || "",
             item_description: item_description || "",
-            price: price || "",
-            ImageUrl: ImageUrl || "",
+            rate: rate || "",
+            image_url: image_url || "",
         };
     },
 
     validationSchema: Yup.object().shape({
         item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        // item_description: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
+        item_description: Yup.string().min(6, 'Too short!').max(144, 'Too Long!').required(),
 
     }),
 
