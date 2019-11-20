@@ -1,67 +1,70 @@
 # Use My Tech Stuff (November 2019 - Lambda Build Week)!
 
 ## Team:
-UI: Corell Brown and Anthony Streett
-React1: Bryan Adams and Arin Ramer
-React2: David Delfaus
-Backend: Daniel Firpo
-Project Lead: Wesley White
+- UI: Corell Brown and Anthony Streett
+- React1: Bryan Adams and Arin Ramer
+- React2: David Delfaus
+- Backend: Daniel Firpo
+- Project Lead: Wesley White
 
 ## Proposal:
 Nobody likes paying full price for items they're going to use only a few times. Rent your items from real people like you who have extra tech laying around.
 
 
 - What problem does your app solve?  
-    Allow users who have unused equipment to make a profit by loaning it.
-    Allow users to have access to technology without the high cost of purchasing equipment.
+    - Allow users who have unused equipment to make a profit by loaning it.
+    - Allow users to have access to technology without the high cost of purchasing equipment.
 
 - Be as specific as possible; how does your app solve the problem?
     
-	By giving owners the ability to rent out equipment, and giving users the ability to use the equipment without the high purchasing costs. 
+	- By giving owners the ability to rent out equipment, and giving users the ability to use the equipment without the high purchasing costs. 
 
 
 - What is the mission statement?
-    Saving people money, making people money.
+    - Saving people money, making people money.
 
 
 ## Features:
 
 - What features are required for your minimum viable product?
-    Users can create a profile, login, add listings for rent, update listings for rent, delete listing for rent and rent items.
+    - Users can create a profile, login, add listings for rent, update listings for rent, delete listing for rent and rent items.
 
 - What features may you wish to put in a future release?
-    User messaging, user reviews, Calendar and Google Map integration, native mobile app.
+    - User messaging, user reviews, Calendar and Google Map integration, native mobile app.
 
 - What do the top 3 similar apps do for their users?
-    AirBNB: lets users rent out their living spaces, Craigslist: lets users buy and sell technology, VRBO: provides access to rentals, Mac In the Cloud: Allows users to rent remote usage of a Mac computer.
+    - AirBNB: lets users rent out their living spaces 
+    - Craigslist: lets users buy and sell technology 
+    - VRBO: provides access to rentals
+    - Mac In the Cloud: Allows users to rent remote usage of a Mac computer
 
 
 ## Frameworks - Libraries:
 
 - What 3rd party frameworks/libraries are you considering using?
-    React, Material, Redux, Yup, Styled Components, Formik, FormikMaterialFields,
+   - React, Material, Redux, Yup, Styled Components, Formik, FormikMaterialFields,
 
 - Do APIs require you to contact its maintainer to gain access?
-No, it's our API
+	- No, it's our API
 
 - Are you required to pay to use the API?
-No, our API
+	- No, our API
 
 
 - Have you considered using Apple Frameworks? (MapKit, Healthkit, ARKit?)
-    No.
+   	 - No.
 
 ## Target Audience:
 
 - Who is your target audience? Be specific.
-    Those who would like to make income on equipment that's not being used. Those who need access to technology, but no money, or would prefer not to purchase the technology.
+    - Those who would like to make income on equipment that's not being used. Those who need access to technology, but no money, or would prefer not to purchase the technology.
 
 
 - What feedback have you gotten from potential users?  
-	Everyone loves it, best site every 10/10
+	- Everyone loves it, best site every 10/10
 
 - Have you validated the problem and your solution with your target audience? How?
-	No, who's even used our app
+	- No, who's even used our app
 
 
 ## Research:
