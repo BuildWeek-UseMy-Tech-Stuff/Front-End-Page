@@ -1,5 +1,5 @@
 import data from "../data"
-import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID} from '../actions/index'
+import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID, FETCH_DELETE_TECHPOST_SUCCESS, SET_USER_RENTALS} from '../actions/index'
 
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
 
 
 const reducer = (state =initialState, action) => {
-  console.log("reducer", action.type, action.payload)
+
     switch(action.type) {
        case START_FETCHING:
            return {
@@ -23,7 +23,7 @@ const reducer = (state =initialState, action) => {
                error: ''
            }
            case FETCH_SUCCESS:
-              console.log(action.payload, "payload1")
+       
             return {
               ...state,
               isFetching: false,
@@ -37,15 +37,30 @@ const reducer = (state =initialState, action) => {
               isFetching: false
             };
           case SET_ID:
-              console.log(action.payload, "SET_ID")
+            
             return { 
               ...state, 
               userId: action.payload
             };
+          
+          case SET_USER_RENTALS:
+              console.log(action.payload, "SET_USER_RENTALS")
+            return {
+              ...state,
+              postItems: action.payload
 
+            }
+
+          case FETCH_DELETE_TECHPOST_SUCCESS:
+            return {
+              ...state,
+              isFetching: false,
+              error:"",
+
+            }
 
         default:
-          console.log("default: ", action.type, "set id: ", SET_ID)
+      
         return {...state};
     }
   

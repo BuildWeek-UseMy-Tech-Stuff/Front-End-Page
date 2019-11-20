@@ -2,6 +2,7 @@ import React, { useState} from "react"
 import {Link} from "react-router-dom"
 import  { useEffect } from "react";
 import { connect } from 'react-redux'
+import { storeUserRentals } from '../actions'
 import {axiosWithAuth } from '../utils/axiosWithAuth'
 import { fetchTechListing } from '../actions'
 import MyRentals from "./MyRentals"
@@ -10,18 +11,17 @@ import GridList from '@material-ui/core/GridList';
 
 
 function Account (props) {
-    console.log(props.userId, "account page")
+    // console.log(props.userId, "account page")
     
     const [rentals, setRentals] = useState([]);
-    // console.log(props, "account page"),
-
+    
     useEffect(() => {
         axiosWithAuth()
         .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${props.userId}/rentals`)
         .then(res => {
-            console.log(res)
+        
            setRentals(res.data.rentals)
-            
+            props.storeUserRentals(res.data.rentals)
         })
         .catch(err => {
             console.log("There was an error, ", err)
@@ -49,9 +49,10 @@ function Account (props) {
 const mapStateToProps = state => {
 
     return {
-        userId: state.userId
+        userId: state.userId,
+        postItems: state.postItems
     }
 
 }
 // export default Account
-export default connect(mapStateToProps, {}) (Account)
+export default connect(mapStateToProps, {storeUserRentals}) (Account)

@@ -12,7 +12,7 @@ import { connect} from "react-redux"
 import { lightBlue } from '@material-ui/core/colors';
 
 const PostItem = ({ status }, props) => {
-    console.log(props, "post")
+
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -46,7 +46,7 @@ const PostItem = ({ status }, props) => {
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
-console.log("Props", props)
+
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
