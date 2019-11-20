@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
+import { Form, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField, FormikSelectField } from "formik-material-fields"
 import { axiosWithAuth } from '../utils/axiosWithAuth'
@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 
-const UserForm = ({ status }, props) => {
+const PostItem = ({ status }, props) => {
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -40,7 +40,7 @@ const UserForm = ({ status }, props) => {
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
-  
+
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -49,8 +49,9 @@ const UserForm = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="itemname" autoComplete="item" placeholder="Item Name *" />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="itemdescription" autoComplete="description" placeholder="Item's Description *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
                     <FormikSelectField
                         name="category"
                         label="Category"
@@ -58,14 +59,14 @@ const UserForm = ({ status }, props) => {
                         options={[
                             { label: 'Computers', value: 0 },
                             { label: 'Mobile Phones', value: 1 },
-                            { label: 'Cameras', value: 1 },
-                            { label: 'Audio Equipment', value: 1 },
+                            { label: 'Cameras', value: 2 },
+                            { label: 'Audio Equipment', value: 3 },
                         ]}
                         fullWidth
                         native
                     />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="price" autoComplete="price" placeholder="Daily Price $ *" />
-                    
+
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="ImageUrl" autoComplete="Image" placeholder="Add Image URL Here *" />
                     <Button
                         type="submit"
@@ -83,29 +84,30 @@ const UserForm = ({ status }, props) => {
         </Container>
     );
 };
-const FormikLoginForm = withFormik({
-    mapPropsToValues({ itemname, itemdescription, price, ImageUrl }) {
+const FormikPostItem = withFormik({
+    mapPropsToValues({ user_id, item_name, item_description, price, ImageUrl }) {
         return {
-            itemname: itemname || "",
-            itemdescription: itemdescription || "",
+            user_id: user_id || "",
+            item_name: item_name || "",
+            item_description: item_description || "",
             price: price || "",
             ImageUrl: ImageUrl || "",
         };
     },
-    
+
     validationSchema: Yup.object().shape({
-        itemname: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        itemdescription: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
-        price: Yup.number('Please Enter A Number').max(100, "Price must be less than $100 a day").typeError("Price must be a number").required().positive('Price Must be a Positive Number').integer(),
-        ImageUrl: Yup.string().url().required(),
+        item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
+        // item_description: Yup.string().min(24, 'Too short!').max(144, 'Too Long!').required(),
+
     }),
 
     handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
+            .post("https://tech-stuff-api.herokuapp.com/api/rentals/create", values)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
+                console.log(res, "token")
+                localStorage.setItem('token', res.data.token);
                 setStatus(res.data);
                 console.log(res.data);
                 resetForm();
@@ -113,6 +115,6 @@ const FormikLoginForm = withFormik({
             })
             .catch(err => console.log(err.response));
     }
-})(UserForm);
+})(PostItem);
 
-export default FormikLoginForm;
+export default FormikPostItem;
