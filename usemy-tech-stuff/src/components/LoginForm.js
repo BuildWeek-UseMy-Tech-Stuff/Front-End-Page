@@ -98,7 +98,7 @@ const FormikLoginForm = withFormik({
     handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com//api/rentals/create", values)
+            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
                 console.log(res, "token")
                 localStorage.setItem('token', res.data.token);
