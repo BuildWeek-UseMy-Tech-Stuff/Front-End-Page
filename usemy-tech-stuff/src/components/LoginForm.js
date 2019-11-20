@@ -3,7 +3,7 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { FormikTextField } from "formik-material-fields"
 import {axiosWithAuth } from '../utils/axiosWithAuth'
-
+import axios from "axios";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { connect} from "react-redux"
+import { storeUserId } from "../actions"
+
 
 const UserForm = ({status }, props) => {
     const useStyles = makeStyles(theme => ({
@@ -84,6 +87,12 @@ const UserForm = ({status }, props) => {
         </Container>
     );
 };
+
+const mapStateToProps = state => {
+    return {
+        userId: state.userId
+    }
+}
 const FormikLoginForm = withFormik({
     mapPropsToValues({ username, password, }) {
         return {
@@ -97,13 +106,16 @@ const FormikLoginForm = withFormik({
     }),
     handleSubmit(values, { setStatus, resetForm ,props}) {
         //values is our object with all our data on it
-        axiosWithAuth()
+        axios
             .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
-                console.log(res, "token")
+           
                 localStorage.setItem('token', res.data.token);
+                
+                storeUserId(res.data.user_id)
+                
                 setStatus(res.data);
-                console.log(res.data);
+                
                 resetForm();
                 props.history.push("/TechList")
             })
@@ -111,4 +123,4 @@ const FormikLoginForm = withFormik({
     }
 })(UserForm);
 
-export default FormikLoginForm;
+export default connect(mapStateToProps, {storeUserId})(FormikLoginForm);

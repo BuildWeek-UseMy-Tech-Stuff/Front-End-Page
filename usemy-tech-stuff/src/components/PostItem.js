@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import { connect} from "react-redux"
 
 const PostItem = ({ status }, props) => {
     const useStyles = makeStyles(theme => ({
@@ -84,6 +84,17 @@ const PostItem = ({ status }, props) => {
         </Container>
     );
 };
+
+
+const mapStateToProps = state => {
+    
+    return {
+        user_id: state.user_id 
+        
+    }
+}
+
+
 const FormikPostItem = withFormik({
     mapPropsToValues({ user_id, item_name, item_description, price, ImageUrl }) {
         return {
@@ -101,15 +112,16 @@ const FormikPostItem = withFormik({
 
     }),
 
-    handleSubmit(values, { setStatus, resetForm, props }) {
+    handleSubmit(values, { setStatus, resetForm, props, user_id }) {
         //values is our object with all our data on it
+    
         axiosWithAuth()
-            .post("https://tech-stuff-api.herokuapp.com/api/rentals/create", values)
+            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values, user_id)
             .then(res => {
-                console.log(res, "token")
-                localStorage.setItem('token', res.data.token);
+                
                 setStatus(res.data);
-                console.log(res.data);
+                // console.log(res.data);       
+                // console.log(values, 'values')
                 resetForm();
                 props.history.push("/TechList")
             })
@@ -117,4 +129,4 @@ const FormikPostItem = withFormik({
     }
 })(PostItem);
 
-export default FormikPostItem;
+export default connect(mapStateToProps, {})(FormikPostItem);

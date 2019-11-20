@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchTechListing } from '../actions'
 import TechCard from './TechCard'
+import Account from './Account'
 import GridList from '@material-ui/core/GridList';
 
 const TechList = (props) => {
