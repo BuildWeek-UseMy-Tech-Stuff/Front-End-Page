@@ -36,7 +36,7 @@ function App(props) {
     <PrivateRoute exact path ="/TechList" component = {TechList} />
     <PrivateRoute exact path ="/EditAccount" component = {EditAccount} />
     <PrivateRoute exact path="/AddItem" component = {PostItem} />
-    <PrivateRoute exact path="/EditPost" component = {EditPost} />
+    <PrivateRoute exact path="/EditPost/:postID" component = {EditPost} />
     <PrivateRoute exact path="/Account/" component = {Account} />
     <Copyright/> 
     </div>
