@@ -18,7 +18,7 @@ import EditPost from './EditPost'
 import EditPost2 from "./EditPost2"
 import '../App.css'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
     textAlign: "center",
@@ -26,7 +26,15 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
-});
+  modalBox: {
+    position: 'absolute',
+    width: 600,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const TechCard = (props) => {
     
@@ -117,8 +125,10 @@ const TechCard = (props) => {
                             aria-describedby="simple-modal-description"
                             open={open}
                             onClose={handleClose}
-                        >
+                        >   
+                            <div className = {classes.modalBox}>
                             <EditPost2 {...props} tech ={props.tech}/>
+                            </div>
                         </Modal>
                     </div>
                 </Card>

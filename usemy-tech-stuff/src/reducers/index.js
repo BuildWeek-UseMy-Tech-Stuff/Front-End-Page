@@ -51,13 +51,7 @@ const reducer = (state =initialState, action) => {
               postItems: action.payload
 
             }
-          case SET_ITEM_ID: 
-            console.log(action.payload, "SET_ITEM_ID")
-            return {
-              ...state,
-              itemId: action.payload
-
-            }
+        
           case FETCH_DELETE_TECHPOST_SUCCESS:
               console.log(action.payload, "FETCH_DELETE_TECHPOST_SUCCESS")
             return {
@@ -76,3 +70,13 @@ const reducer = (state =initialState, action) => {
 
 
 export default reducer;
+
+
+
+// case SET_ITEM_ID: 
+// console.log(action.payload, "SET_ITEM_ID")
+// return {
+//   ...state,
+//   itemId: action.payload
+
+// }

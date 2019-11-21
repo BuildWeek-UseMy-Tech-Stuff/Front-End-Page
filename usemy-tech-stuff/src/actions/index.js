@@ -12,7 +12,7 @@ export const SET_ITEM_ID = 'SET_ITEM_ID'
 
 
 export const storeUserId = (user_id) => dispatch => { 
-    console.log("ACTION STORE USER ID ", user_id, SET_ID);
+   
    dispatch({ type: SET_ID, payload: user_id});
 }
 
@@ -20,11 +20,6 @@ export const storeUserId = (user_id) => dispatch => {
 export const storeUserRentals = (rent) => dispatch => {
     console.log("ACTION STORE RENTALS", rent, SET_USER_RENTALS)
     dispatch({type: SET_USER_RENTALS, payload: rent})
-}
-
-export const storeItemId = (id) => dispatch => {
-    console.log("ACTION STORE ID", id, SET_ITEM_ID)
-    dispatch({type: SET_ITEM_ID, payload: id})
 }
 
 // TechListing get
@@ -50,6 +45,11 @@ export const fetchDeleteTechPost = (id) => dispatch => {
 }
 
 
+
+// export const storeItemId = (id) => dispatch => {
+//     console.log("ACTION STORE ID", id, SET_ITEM_ID)
+//     dispatch({type: SET_ITEM_ID, payload: id})
+// }
 
 //TechListing post
 

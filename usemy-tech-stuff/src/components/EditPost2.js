@@ -4,13 +4,10 @@ import { axiosWithAuth } from "../utils/axiosWithAuth"
 // MaterialUI
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+
 import TextField from '@material-ui/core/TextField';
-import { classes } from 'istanbul-lib-coverage';
+
 import Button from '@material-ui/core/Button';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 
 
 
@@ -90,7 +87,7 @@ const changeHandler = event => {
 return (
        
     <div>
-        <button onClick={() => console.log(props)}>check props</button>
+        
         <h1>Edit your tool</h1>
         <form className ={classes.container} onSubmit ={submitHandler}>
             
