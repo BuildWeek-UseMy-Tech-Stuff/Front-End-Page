@@ -23,8 +23,10 @@ const useStyles = makeStyles({
   },
 });
 
-const TechCard = props => {
-    console.log(props.tech, "TechCard")
+const TechCard = (props) => {
+    
+    console.log(props, "MyRentals")
+    console.log(props.tech.id, "rentalId")
     // console.log(props.tech.name, "tech")
     // console.log(props.tech.id)
     
@@ -76,7 +78,7 @@ const TechCard = props => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
                         </Button>
                         <Button>

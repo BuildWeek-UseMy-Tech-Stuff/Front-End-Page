@@ -8,10 +8,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import  { useState, useEffect} from "react"
 import { connect} from "react-redux"
 import { lightBlue } from '@material-ui/core/colors';
 const PostItem = ({ status }, props) => {
-    console.log(props, "post")
+
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -41,6 +42,13 @@ const PostItem = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
+
+    const [people, setPeople] = useState([]);
+    useEffect(() => {
+        status && setPeople(people => [...people, status]);
+    }, [status]);
+
+
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -96,7 +104,7 @@ const FormikPostItem = withFormik({
 
     handleSubmit(values, { setStatus, resetForm, props }) {
         //values is our object with all our data on it
-        console.log("props in post request", values)
+        // console.log("props in post request", values)
     
         axiosWithAuth()
             .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values )
