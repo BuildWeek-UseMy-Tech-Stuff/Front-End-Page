@@ -101,7 +101,7 @@ const TechCard = (props) => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick ={() => {props.fetchDeleteTechPost(props.tech.id); setTimeout(function(){ props.history.push("/TechList"); }, 500)}} style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
                         </Button>
                         <Button onClick ={handleOpen}> edit
