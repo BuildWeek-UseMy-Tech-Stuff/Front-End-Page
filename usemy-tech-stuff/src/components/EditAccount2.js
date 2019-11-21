@@ -44,7 +44,6 @@ const EditAccount2 = props => {
     const [userInfo, setUserInfo] = useState({
         username: "",
         email: "",
-        password: "",
         phone_number: "",
         location: "",
        
@@ -55,7 +54,7 @@ const EditAccount2 = props => {
     const submitHandler = event => {
         event.preventDefault();
         axiosWithAuth()
-            .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com//api/rentals/${props.userId}`, userInfo)  
+            .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${props.userId}`, userInfo)  
             .then(res => console.log(res))
             .catch(err => console.log(err.response))
         
@@ -92,17 +91,7 @@ const EditAccount2 = props => {
                 placeholder="email"
                 />
             
-            <TextField 
-                label ="password"
-                variant ="outlined"
-                margin="normal"
-                type="password"
-                name="password"
-                className={classes.textField}
-                value={userInfo.password}
-                onChange={changeHandler}
-                placeholder="password"
-                />
+            
              <TextField 
                 label ="phone_number"
                 variant ="outlined"
