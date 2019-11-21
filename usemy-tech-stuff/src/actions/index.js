@@ -7,7 +7,7 @@ export const FETCH_FAILURE = "FETCH_FAILURE";
 export const SET_ID = 'SET_ID';
 export const SET_USER_RENTALS = 'SET_USER_RENTALS';
 export const FETCH_DELETE_TECHPOST_SUCCESS = 'FETCH_DELETETECHPOST_SUCCESS'
-
+export const SET_ITEM_ID = 'SET_ITEM_ID'
 // export const FETCH_CREATERENTPOST_SUCCESS = "FETCH_CREATERENTPOST_SUCCESS"
 
 
@@ -22,6 +22,10 @@ export const storeUserRentals = (rent) => dispatch => {
     dispatch({type: SET_USER_RENTALS, payload: rent})
 }
 
+export const storeItemId = (id) => dispatch => {
+    console.log("ACTION STORE ID", id, SET_ITEM_ID)
+    dispatch({type: SET_ITEM_ID, payload: id})
+}
 
 // TechListing get
 export const fetchTechListing = () => dispatch => {

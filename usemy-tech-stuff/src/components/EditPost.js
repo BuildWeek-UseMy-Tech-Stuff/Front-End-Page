@@ -11,8 +11,8 @@ import Container from '@material-ui/core/Container';
 import { connect} from "react-redux"
 import { lightBlue } from '@material-ui/core/colors';
 
-const PostItem = ({ status }, props) => {
-    console.log(props, "post")
+const EditItem = ({ status },props) => {
+    
     const useStyles = makeStyles(theme => ({
         '@global': {
             body: {
@@ -42,7 +42,7 @@ const PostItem = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
-console.log("Props", props)
+console.log("Props_editing", props)
     return (
         <Container componenet="main" maxWidth="xs">
             <CssBaseline />
@@ -78,8 +78,8 @@ console.log("Props", props)
 
 
 
-const FormikPostItem = withFormik({
-    mapPropsToValues({ item_name, item_description, rate, img_url, userId, category }) {
+const FormikEditItem = withFormik({
+    mapPropsToValues({ item_name, item_description, rate, img_url, userId, category , props}) {
         return {
          
             item_name: item_name || "",
@@ -87,7 +87,8 @@ const FormikPostItem = withFormik({
             category: category || "",
             rate: rate || "",
             img_url: img_url || "",
-            user_id: userId  || ""
+            user_id: userId  || "",
+            props: props
         };
     },
 
@@ -102,7 +103,7 @@ const FormikPostItem = withFormik({
         console.log("props in post request", values)
     
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/create", values )
+            .put("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/:id", values )
             .then(res => {
                 
                 setStatus(res.data);
@@ -113,7 +114,7 @@ const FormikPostItem = withFormik({
             })
             .catch(err => console.log(err.response));
     }
-})(PostItem);
+})(EditItem);
 
 
 const mapStateToProps = state => {
@@ -124,4 +125,6 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(FormikPostItem);
+
+export default FormikEditItem;
+// export default connect(mapStateToProps, {})(FormikEditItem);
