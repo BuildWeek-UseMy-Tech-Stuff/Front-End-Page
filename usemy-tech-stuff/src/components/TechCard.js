@@ -123,7 +123,7 @@ const TechCard = props => {
 
 
 
-                        <Button onClick={() => props.fetchAddRentedItem(props.userId,date.rented_at, date.due_back)} style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick={() => props.fetchAddRentedItem(props.userId, date.rented_at, date.due_back)} style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>

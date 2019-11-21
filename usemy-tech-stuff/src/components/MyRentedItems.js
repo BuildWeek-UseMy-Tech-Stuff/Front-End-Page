@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TechCard = (props) => {
+const MyRentedItems = (props) => {
 
     
     const classes = useStyles();
@@ -95,22 +95,11 @@ const TechCard = (props) => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
-                        Delete this item
+                        <Button style={{margin: "5%"}} size="small" color="primary">
+                        return
                         </Button>
-                        <Button onClick ={handleOpen}> edit
-                        {/* <Link to="/EditPost/:postID">Edit Post</Link> */}
-                        </Button>
-                        <Modal
-                            aria-labelledby="simple-modal-title"
-                            aria-describedby="simple-modal-description"
-                            open={open}
-                            onClose={handleClose}
-                        >   
-                            <div className = {classes.modalBox}>
-                            <EditPost2 {...props} tech ={props.tech}/>
-                            </div>
-                        </Modal>
+                        
+                        
                     </div>
                 </Card>
             </Grid>
@@ -120,5 +109,5 @@ const TechCard = (props) => {
 }
 
 
-export default TechCard
+export default MyRentedItems
 
