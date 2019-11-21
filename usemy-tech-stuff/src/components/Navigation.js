@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
 import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
-import { maxWidth } from "@material-ui/system";
 export default function Navbar(props) {
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -43,13 +42,20 @@ export default function Navbar(props) {
       justifyContent: 'center',
     
     },
+    setWidth: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+     [theme.breakpoints.down('sm')]: {
+       flexDirection: "column"
+     }
+    },
     NavbarColor: {
       marginTop: theme.spacing(8),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: lightBlue[200],
-      width: "25%",
     
     },
     noDecor: {
@@ -59,6 +65,7 @@ export default function Navbar(props) {
   const classes = useStyles();
   return (
     <nav>
+      
       <div className={classes.paper}>
         <Avatar className={classes.avatar}
           src="https://image.flaticon.com/icons/svg/11/11296.svg"
@@ -71,9 +78,7 @@ export default function Navbar(props) {
         {token === null ? (   
           <>
             <AppBar className={classes.NavbarColor} position="static">
-              <Toolbar className={maxWidth}>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                </IconButton>
+              <Toolbar className={classes.setWidth}>
                 <NavLink className={`${classes.submit} ${classes.noDecor}`} to="/signup">
                   <Button>
                     Sign Up
@@ -90,9 +95,7 @@ export default function Navbar(props) {
         ) : (
             <>
               <AppBar className={classes.NavbarColor} position="static">
-                <Toolbar>
-                  <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                  </IconButton>
+                <Toolbar className={classes.setWidth}>
                   <NavLink className={`${classes.noDecor}`} to={`/TechList`}>
                     <Button>
                       Items For Rent

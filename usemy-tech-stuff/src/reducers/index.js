@@ -1,5 +1,6 @@
 import data from "../data"
 import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID, FETCH_DELETE_TECHPOST_SUCCESS, SET_USER_RENTALS, SET_ITEM_ID} from '../actions/index'
+import { defaultProps } from "recompose"
 
 
 const initialState = {

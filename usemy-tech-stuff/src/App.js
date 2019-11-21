@@ -29,6 +29,7 @@ function App(props) {
   return (
     <div className="App">
     <Route path="/" component={Navigation} />
+    <Route exact path="/" component={LoginForm} />
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
     <Route path="/dogs" component={Dogs} />
