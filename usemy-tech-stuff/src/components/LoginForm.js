@@ -140,7 +140,7 @@ const UserForm = ({ status, history }, props) => {
     }));
     const classes = useStyles();
     return (
-        <Container componenet="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5">
@@ -210,7 +210,7 @@ const UserForm = ({ status, history }, props) => {
                             horizontal: 'left',
                             }}
                             open={open}
-                            autoHideDuration={2000}
+                            autoHideDuration={1000}
                             onClose={handleClose}
                         >
                             <MySnackbarContentWrapper
