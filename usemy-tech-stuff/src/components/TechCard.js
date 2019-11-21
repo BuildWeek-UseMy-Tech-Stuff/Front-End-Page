@@ -56,18 +56,23 @@ const TechCard = props => {
                         title={props.tech.category}
                     />
                     <CardContent>
-                        <Typography variant="h5" component="h5">
+                        <Typography variant="h4" component="h4">
                         {props.tech.item_name}
                         </Typography>
-                        <Typography variant="h6" component="h6">
+                        <Typography variant="h5" component="h5">
+                        <br/>
                         Category:<br/>
                         </Typography>
-                        <Typography variant="h6" component="h6">
+                        <Typography variant="h5" component="h5">
                         {props.tech.category}
                         </Typography>
-                        <Typography variant="h6" component="h6">
+                        <Typography variant="h5" component="h5">
                         <br/>
-                        Item description:<br/>
+                        Rate: ${props.tech.rate} per day
+                        </Typography>
+                        <Typography variant="h5" component="h5">
+                        <br/>
+                        Item description:
                         </Typography>
                         <Typography variant="body1" color="textSecondary" component="p">
                         {props.tech.item_description}
