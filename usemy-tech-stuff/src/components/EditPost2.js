@@ -54,6 +54,7 @@ const useStyles = makeStyles(theme => ({
 const EditPost2 = props => {
     console.log(props.tech, "edit")
     const classes = useStyles();
+    const [ready, setReady] = useState("")
     const [item, setItem] = useState({
         item_name: "",
         item_description: "",
@@ -67,13 +68,17 @@ const EditPost2 = props => {
         setItem(props.tech)
     }, [props.tech]);
 
+    if(ready === "ready") {
+        props.history.push("/TechList")
+    }
+
 const submitHandler = event => {
     event.preventDefault();
     axiosWithAuth()
         .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com//api/rentals/${props.tech.id}`, item)  
-        .then(res => console.log(res))
+        .then(res => {console.log(res); setReady("ready");})
         .catch(err => console.log(err.response))
-        props.history.push("/TechList")
+        
     
     console.log(item, "Edit Form submit handler")
 }
