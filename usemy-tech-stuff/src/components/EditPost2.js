@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         marginTop: '2%',
         marginBottom: '4.3%',
-        width: '15%'
+
     },
     input: {
     display: 'none',
