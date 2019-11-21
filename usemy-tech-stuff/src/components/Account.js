@@ -4,6 +4,7 @@ import  { useEffect } from "react";
 import { connect } from 'react-redux'
 import { storeUserRentals } from '../actions'
 import { fetchDeleteTechPost } from "../actions"
+import { fetchRentedItem } from "../actions"
 import {axiosWithAuth } from '../utils/axiosWithAuth'
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchTechListing } from '../actions'
@@ -42,6 +43,11 @@ function Account (props) {
     const [rentals, setRentals] = useState([]);
     
     useEffect(() => {
+        //action
+        props.fetchRentedItem(props.userId)
+        console.log(props.rentItems, "rented Items")
+        //action
+        
         axiosWithAuth()
         .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${props.userId}/rentals`)
         .then(res => {
@@ -52,6 +58,7 @@ function Account (props) {
         .catch(err => {
             console.log("There was an error, ", err)
         })
+
     },[])
     const [users, setUsers] = useState([]);
 
@@ -59,7 +66,7 @@ function Account (props) {
         axiosWithAuth()
         .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${props.userId}`)
         .then(res => {
-            console.log(res)
+            console.log(res, "userinformation")
            setUsers(res.data)
             
         })
@@ -90,7 +97,8 @@ function Account (props) {
                             left="50%"
                         >   
                             <div className = {classes.modalBox}>
-                            <EditAccount2  users ={users}/>
+                            <EditAccount2  users ={users} email = {users.email} username= {users.username} location = {users.location} phone ={users.phone}
+                            />
                             </div>
                         </Modal>
         </div>
@@ -101,6 +109,9 @@ function Account (props) {
                 <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost} history ={props.history}/>              
             ))}
             </GridList>
+            {/* {props.rentItems.map(item => (
+                <MyRentals key= {item.id} tech ={item} history ={props.history} />
+            ))} */}
         </div>
         </>
 
@@ -115,9 +126,10 @@ const mapStateToProps = state => {
 
     return {
         userId: state.userId,
-        postItems: state.postItems
+        postItems: state.postItems,
+        rentItems: state.rentItems
     }
 
 }
 // export default Account
-export default connect(mapStateToProps, {storeUserRentals, fetchDeleteTechPost}) (Account)
+export default connect(mapStateToProps, {storeUserRentals, fetchDeleteTechPost, fetchRentedItem}) (Account)
