@@ -13,7 +13,7 @@ import { Button } from "@material-ui/core";
 
 
 function Account (props) {
-    // console.log(props.userId, "account page")
+    console.log(props, "account page")
     
     const [rentals, setRentals] = useState([]);
     
@@ -60,7 +60,7 @@ function Account (props) {
             <h1 style={{display: "flex", justifyContent: "center"}}>My rentals</h1>
             <GridList style={{justifyContent: "center"}}>
             {rentals.map(item => (
-                <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost}/>              
+                <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost} history ={props.history}/>              
             ))}
             </GridList>
         </div>
