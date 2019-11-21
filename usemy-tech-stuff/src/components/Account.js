@@ -88,7 +88,7 @@ function Account (props) {
                             onClose={handleClose}
                         >   
                             <div className = {classes.modalBox}>
-                            <EditAccount2 {...props} tech ={props.tech}/>
+                            <EditAccount2  users ={users}/>
                             </div>
                         </Modal>
         </div>

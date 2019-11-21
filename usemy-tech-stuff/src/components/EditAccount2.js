@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from "../utils/axiosWithAuth"
+import { connect} from "react-redux"
+
 
 // MaterialUi
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,11 +38,95 @@ const useStyles = makeStyles(theme => ({
   }));
 
 const EditAccount2 = props => {
+    console.log(props, "account")
     const classes = useStyles();
     
+    const [userInfo, setUserInfo] = useState({
+        username: "",
+        email: "",
+        password: "",
+        phone_number: "",
+        location: "",
+       
+    });
+    useEffect(() => {
+        setUserInfo(props.users)
+    }, [props.users]);
+    const submitHandler = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com//api/rentals/${props.userId}`, userInfo)  
+            .then(res => console.log(res))
+            .catch(err => console.log(err.response))
+        
+        console.log(userInfo, "Edit Form submit handler")
+    }
+    const changeHandler = event => {
+        setUserInfo({ ...userInfo, [event.target.name]: event.target.value })
+    }
+
     return (
         <div>
+            <form className ={classes.container} onSubmit= {submitHandler}>
+            <TextField 
+                label ="username"
+                variant ="outlined"
+                margin="normal"
+                type="text"
+                name="username"
+                className={classes.textField}
+                value={userInfo.username}
+                onChange={changeHandler}
+                placeholder="username"
+                />
 
+            <TextField 
+                label ="email"
+                variant ="outlined"
+                margin="normal"
+                type="text"
+                name="email"
+                className={classes.textField}
+                value={userInfo.email}
+                onChange={changeHandler}
+                placeholder="email"
+                />
+            
+            <TextField 
+                label ="password"
+                variant ="outlined"
+                margin="normal"
+                type="password"
+                name="password"
+                className={classes.textField}
+                value={userInfo.password}
+                onChange={changeHandler}
+                placeholder="password"
+                />
+             <TextField 
+                label ="phone_number"
+                variant ="outlined"
+                margin="normal"
+                type="text"
+                name="phone_number"
+                className={classes.textField}
+                value={userInfo.phone_number}
+                onChange={changeHandler}
+                placeholder="phone_number"
+                />
+            <TextField 
+                label ="location"
+                variant ="outlined"
+                margin="normal"
+                type="text"
+                name="location"
+                className={classes.textField}
+                value={userInfo.location}
+                onChange={changeHandler}
+                placeholder="location"
+                />
+            <Button className={classes.button} variant="outlined" color="black"type ="submit">submit</Button>
+            </form>
         </div>
     )
 }
@@ -48,6 +134,12 @@ const EditAccount2 = props => {
 
 
 
+const mapStateToProps = state => {
+    
+    return {
+        userId: state.userId 
+        
+    }
+}
 
-
-export default EditAccount2
+export default connect(mapStateToProps, {})(EditAccount2)
