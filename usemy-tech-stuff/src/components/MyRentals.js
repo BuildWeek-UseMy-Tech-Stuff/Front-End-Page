@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -79,6 +80,9 @@ const TechCard = (props) => {
                         
                         <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
+                        </Button>
+                        <Button>
+                        <Link to="/EditPost/:postID">Edit Post</Link>
                         </Button>
                     </div>
                 </Card>

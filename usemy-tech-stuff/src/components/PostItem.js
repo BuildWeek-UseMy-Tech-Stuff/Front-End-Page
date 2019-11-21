@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import  { useState, useEffect} from "react"
 import { connect} from "react-redux"
 import { lightBlue } from '@material-ui/core/colors';
-
 const PostItem = ({ status }, props) => {
 
     const useStyles = makeStyles(theme => ({
@@ -43,10 +42,12 @@ const PostItem = ({ status }, props) => {
         },
     }));
     const classes = useStyles();
+
     const [people, setPeople] = useState([]);
     useEffect(() => {
         status && setPeople(people => [...people, status]);
     }, [status]);
+
 
     return (
         <Container componenet="main" maxWidth="xs">
@@ -56,7 +57,6 @@ const PostItem = ({ status }, props) => {
                     Post Your Item
                 </Typography>
                 <Form className={classes.form} noValidate>
-                    {/* <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="user_id" autoComplete="user" placeholder="User ID *" /> */}
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_name" autoComplete="item" placeholder="Item Name *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="category" autoComplete="category" placeholder="Item's Category *" />
@@ -74,7 +74,7 @@ const PostItem = ({ status }, props) => {
 
 
                 </Form>
-            </div>
+            </div>  
         </Container>
     );
 };
