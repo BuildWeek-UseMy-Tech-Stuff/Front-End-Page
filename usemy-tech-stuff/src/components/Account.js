@@ -59,7 +59,7 @@ function Account (props) {
         axiosWithAuth()
         .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${props.userId}`)
         .then(res => {
-            console.log(res)
+            console.log(res, "userinformation")
            setUsers(res.data)
             
         })
@@ -88,7 +88,8 @@ function Account (props) {
                             onClose={handleClose}
                         >   
                             <div className = {classes.modalBox}>
-                            <EditAccount2  users ={users}/>
+                            <EditAccount2  users ={users} email = {users.email} username= {users.username} location = {users.location} phone ={users.phone}
+                            />
                             </div>
                         </Modal>
         </div>

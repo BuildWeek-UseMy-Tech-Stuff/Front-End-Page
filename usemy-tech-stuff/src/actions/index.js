@@ -30,7 +30,7 @@ export const fetchTechListing = () => dispatch => {
         .get(
             "https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals"
         )
-        .then(res => { console.log(res);
+        .then(res => { console.log(res, "need Idaaaaaaaaaaaaaaaa");
         dispatch({ type: FETCH_SUCCESS, payload: res.data})})
         .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }));
 }
@@ -46,9 +46,9 @@ export const fetchDeleteTechPost = (id) => dispatch => {
 }
 
 // TechListing Rent
-export const fetchAddRentedItem= (id,rented_at, due_back, renter_Id) => dispatch => {
+export const fetchAddRentedItem = (renter_id,rented_at, due_back, renter_Id) => dispatch => {
     axiosWithAuth()
-    .post(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/${id}/rent`, {rented_at, due_back, id, renter_Id})
+    .post(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/${renter_id}/rent`, {rented_at, due_back, renter_Id})
     .then(res => dispatch({ type: FETCH_ADD_RENT_SUCCESS })& console.log(res.data, "fetchAddRental"))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
 }

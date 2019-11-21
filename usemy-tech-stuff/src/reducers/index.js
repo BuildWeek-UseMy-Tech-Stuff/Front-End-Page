@@ -1,5 +1,5 @@
 import data from "../data"
-import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID, FETCH_DELETE_TECHPOST_SUCCESS, SET_USER_RENTALS, SET_ITEM_ID} from '../actions/index'
+import { START_FETCHING, FETCH_SUCCESS,FETCH_FAILURE, SET_ID, FETCH_DELETE_TECHPOST_SUCCESS, SET_USER_RENTALS, FETCH_ADD_RENT_SUCCESS} from '../actions/index'
 
 
 const initialState = {
@@ -52,6 +52,14 @@ const reducer = (state =initialState, action) => {
 
             }
         
+          case FETCH_ADD_RENT_SUCCESS:
+              console.log(action.payload, "FETCH_ADD_RENT_SUCCESS")
+            return {
+              ...state,
+              isFetching: false,
+              error: ""
+            }
+
           case FETCH_DELETE_TECHPOST_SUCCESS:
               console.log(action.payload, "FETCH_DELETE_TECHPOST_SUCCESS")
             return {
