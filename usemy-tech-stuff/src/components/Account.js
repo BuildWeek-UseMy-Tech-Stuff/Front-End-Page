@@ -109,9 +109,9 @@ function Account (props) {
                 <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost} history ={props.history}/>              
             ))}
             </GridList>
-            {props.rentItems.map(item => (
+            {/* {props.rentItems.map(item => (
                 <MyRentals key= {item.id} tech ={item} history ={props.history} />
-            ))}
+            ))} */}
         </div>
         </>
 
