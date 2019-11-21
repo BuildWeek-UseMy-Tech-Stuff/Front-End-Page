@@ -27,19 +27,13 @@ const useStyles = makeStyles(theme => ({
     height: 140,
   },
   modalBox: {
-    height: "25",
+    position: 'absolute',
     width: 600,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    textAlign: "center",
   },
-  flex: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-  }
 }));
 
 const TechCard = (props) => {
@@ -120,25 +114,22 @@ const TechCard = (props) => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button onClick ={() => {props.fetchDeleteTechPost(props.tech.id); props.history.push("/TechList") }} style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
                         </Button>
                         <Button onClick ={handleOpen}> edit
                         {/* <Link to="/EditPost/:postID">Edit Post</Link> */}
                         </Button>
-                        <div>
                         <Modal
                             aria-labelledby="simple-modal-title"
                             aria-describedby="simple-modal-description"
                             open={open}
                             onClose={handleClose}
-                            className={classes.flex}
                         >   
                             <div className = {classes.modalBox}>
                             <EditPost2 {...props} tech ={props.tech}/>
                             </div>
                         </Modal>
-                        </div>
                     </div>
                 </Card>
             </Grid>
