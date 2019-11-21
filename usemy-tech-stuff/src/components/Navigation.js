@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { lightBlue } from '@material-ui/core/colors';
-
+import { AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
 export default function Navbar(props) {
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -22,6 +22,7 @@ export default function Navbar(props) {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      
     },
     avatar: {
       margin: theme.spacing(1),
@@ -38,15 +39,33 @@ export default function Navbar(props) {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+    
+    },
+    setWidth: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+     [theme.breakpoints.down('sm')]: {
+       flexDirection: "column"
+     }
+    },
+    NavbarColor: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      backgroundColor: lightBlue[200],
+    
     },
     noDecor: {
       textDecoration: 'none'
-    }
+    },
   }));
   const classes = useStyles();
   return (
     <nav>
+      
       <div className={classes.paper}>
         <Avatar className={classes.avatar}
           src="https://image.flaticon.com/icons/svg/11/11296.svg"
@@ -56,40 +75,47 @@ export default function Navbar(props) {
 
       </div>
       <div className={classes.paper2}>
-        {token === null ? (
+        {token === null ? (   
           <>
-            <NavLink className={`${classes.submit} ${classes.noDecor}`} to="/signup">
-              <Button>
-                Sign Up
+            <AppBar className={classes.NavbarColor} position="static">
+              <Toolbar className={classes.setWidth}>
+                <NavLink className={`${classes.submit} ${classes.noDecor}`} to="/signup">
+                  <Button>
+                    Sign Up
               </Button>
-            </NavLink>
-            <NavLink className={`${classes.submit} ${classes.noDecor}`} to="/login">
-              <Button>
-                Login
+                </NavLink>
+                <NavLink className={`${classes.submit} ${classes.noDecor}`} to="/login">
+                  <Button>
+                    Login
               </Button>
-            </NavLink>
+                </NavLink>
+              </Toolbar>
+            </AppBar>
           </>
         ) : (
             <>
-              <NavLink className={`${classes.noDecor}`} to={`/TechList`}>
-                <Button>
-                  Items For Rent
+              <AppBar className={classes.NavbarColor} position="static">
+                <Toolbar className={classes.setWidth}>
+                  <NavLink className={`${classes.noDecor}`} to={`/TechList`}>
+                    <Button>
+                      Items For Rent
               </Button>
-              </NavLink>
-              <NavLink className={`${classes.noDecor}`} to={`/AddItem`}>
-          <Button>
-              Rent Out Your Item
+                  </NavLink>
+                  <NavLink className={`${classes.noDecor}`} to={`/AddItem`}>
+                    <Button>
+                      Rent Out Your Item
               </Button>
-            </NavLink>
-              <NavLink className={`${classes.noDecor}`} to={`/Account`}>
-                <Button>
-                  Account
+                  </NavLink>
+                  <NavLink className={`${classes.noDecor}`} to={`/Account`}>
+                    <Button>
+                      Account
               </Button>
-              </NavLink>
-
-              <Button className="navlink button" onClick={handleLogout}>
-                Logout
+                  </NavLink>
+                  <Button className="navlink button" onClick={handleLogout}>
+                    Logout
             </Button>
+                </Toolbar>
+              </AppBar>
             </>
 
           )}

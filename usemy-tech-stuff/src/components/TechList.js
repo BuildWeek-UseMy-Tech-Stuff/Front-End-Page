@@ -12,7 +12,7 @@ const TechList = (props) => {
     }, []);
 
     if (props.isFetching) {
-        return <h2>Loading Data</h2>
+        return <h2 style={{textAlign: "center"}}>Loading Data</h2>
     }
 
     return (

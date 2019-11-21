@@ -25,13 +25,19 @@ const useStyles = makeStyles(theme => ({
     height: 140,
   },
   modalBox: {
-    position: 'absolute',
+    height: "25",
     width: 600,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    textAlign: "center",
   },
+  flex: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+  }
 }));
 
 const TechCard = (props) => {
@@ -106,6 +112,7 @@ const TechCard = (props) => {
                             aria-describedby="simple-modal-description"
                             open={open}
                             onClose={handleClose}
+                            className={classes.flex}
                         >   
                             <div className = {classes.modalBox}>
                             <EditPost2 {...props} tech ={props.tech}/>
