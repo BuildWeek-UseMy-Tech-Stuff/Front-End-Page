@@ -86,6 +86,8 @@ function Account (props) {
                             aria-describedby="simple-modal-description"
                             open={open}
                             onClose={handleClose}
+                            position="relative"
+                            left="50%"
                         >   
                             <div className = {classes.modalBox}>
                             <EditAccount2  users ={users}/>
