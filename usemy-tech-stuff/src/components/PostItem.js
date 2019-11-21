@@ -61,7 +61,7 @@ const PostItem = ({ status }, props) => {
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="item_description" autoComplete="description" placeholder="Item's Description *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="category" autoComplete="category" placeholder="Item's Category *" />
                     <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="rate" autoComplete="rate" placeholder="Daily Rate $ *" />
-                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here *" />
+                    <FormikTextField variant="outlined" margin="normal" fullWidth type="text" name="img_url" autoComplete="Image" placeholder="Add Image URL Here" />
                     <Button
                         type="submit"
                         fullWidth
@@ -97,9 +97,10 @@ const FormikPostItem = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required(),
-        item_description: Yup.string().min(6, 'Too short!').max(144, 'Too Long!').required(),
-
+        item_name: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required("Please enter the name of your item"),
+        item_description: Yup.string().min(6, 'Too short!').max(144, 'Too Long!').required("Please enter a description"),
+        category: Yup.string().min(2, 'Too short!').max(32, 'Too Long!').required("Please specify a category"),
+        rate: Yup.number().typeError("Daily rate must be a number").required("You must specify the daily rental price"),
     }),
 
     handleSubmit(values, { setStatus, resetForm, props }) {

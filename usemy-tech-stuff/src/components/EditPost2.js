@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         marginTop: '2%',
         marginBottom: '4.3%',
-
+        width: '15%'
     },
     input: {
     display: 'none',
@@ -76,7 +76,7 @@ const submitHandler = event => {
     event.preventDefault();
     axiosWithAuth()
         .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com//api/rentals/${props.tech.id}`, item)  
-        .then(res => {console.log(res); setReady("ready");})
+        .then(res => {console.log(res); setReady("ready")})
         .catch(err => console.log(err.response))
         
     
