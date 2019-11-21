@@ -7,6 +7,7 @@ export const FETCH_FAILURE = "FETCH_FAILURE";
 export const SET_ID = 'SET_ID';
 export const SET_USER_RENTALS = 'SET_USER_RENTALS';
 export const FETCH_DELETE_TECHPOST_SUCCESS = 'FETCH_DELETETECHPOST_SUCCESS'
+export const FETCH_ADD_RENT_SUCCESS = 'FETCH_ADD_RENT_SUCCESS'
 export const SET_ITEM_ID = 'SET_ITEM_ID'
 // export const FETCH_CREATERENTPOST_SUCCESS = "FETCH_CREATERENTPOST_SUCCESS"
 
@@ -44,8 +45,17 @@ export const fetchDeleteTechPost = (id) => dispatch => {
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
 }
 
+// TechListing Rent
+export const fetchAddRentedItem= (id,rented_at, due_back, renter_Id) => dispatch => {
+    axiosWithAuth()
+    .post(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/${id}/rent`, {rented_at, due_back, id, renter_Id})
+    .then(res => dispatch({ type: FETCH_ADD_RENT_SUCCESS })& console.log(res.data, "fetchAddRental"))
+    .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
+}
 
 
+
+    
 // export const storeItemId = (id) => dispatch => {
 //     console.log("ACTION STORE ID", id, SET_ITEM_ID)
 //     dispatch({type: SET_ITEM_ID, payload: id})
