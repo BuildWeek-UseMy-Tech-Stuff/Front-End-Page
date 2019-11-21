@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import { connect } from "react-redux"
+import { storeItemId } from "../actions"
 import {Link} from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -11,9 +13,12 @@ import Grid from '@material-ui/core/Grid';
 import GridListTile from '@material-ui/core/GridListTile';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+import Modal from "@material-ui/core/Modal"
+import EditPost from './EditPost'
+import EditPost2 from "./EditPost2"
 import '../App.css'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
     textAlign: "center",
@@ -21,12 +26,20 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
-});
+  modalBox: {
+    position: 'absolute',
+    width: 600,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const TechCard = (props) => {
     
     console.log(props, "MyRentals")
-    console.log(props.tech.id, "rentalId")
+    console.log(props.tech, "rentalId")
     // console.log(props.tech.name, "tech")
     // console.log(props.tech.id)
     
@@ -41,6 +54,29 @@ const TechCard = (props) => {
         setDate({...date, [event.target.name]: event.target.value})
     }
 
+    const [open, setOpen] = React.useState(false);
+    const [openAccount, setOpenAccount] = React.useState(false);
+    const [postTool, setPostTool] = React.useState(false);
+  
+    const handleOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+    // const handleOpenAccount = () => {
+    //     setOpenAccount(true);
+    // };
+    // const handleCloseAccount = () => {
+    // setOpenAccount(false);
+    // };
+    // const handleOpenPostTool = () => {
+    // setPostTool(true);
+    // };
+    // const handleClosePostTool = () => {
+    // setPostTool(false);
+    // };
+//Model End
     return (
 
       
@@ -81,9 +117,19 @@ const TechCard = (props) => {
                         <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
                         </Button>
-                        <Button>
-                        <Link to="/EditPost/:postID">Edit Post</Link>
+                        <Button onClick ={handleOpen}> edit
+                        {/* <Link to="/EditPost/:postID">Edit Post</Link> */}
                         </Button>
+                        <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            open={open}
+                            onClose={handleClose}
+                        >   
+                            <div className = {classes.modalBox}>
+                            <EditPost2 {...props} tech ={props.tech}/>
+                            </div>
+                        </Modal>
                     </div>
                 </Card>
             </Grid>
@@ -92,4 +138,12 @@ const TechCard = (props) => {
     )
 }
 
-export default TechCard;
+// const mapStateToProps = state => {
+//     return {
+//         itemId: state.itemId
+//     }
+// }
+
+export default TechCard
+
+// export default connect(mapStateToProps, {storeItemId})(TechCard);

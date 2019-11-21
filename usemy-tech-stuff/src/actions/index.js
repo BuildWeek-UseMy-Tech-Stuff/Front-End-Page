@@ -7,12 +7,12 @@ export const FETCH_FAILURE = "FETCH_FAILURE";
 export const SET_ID = 'SET_ID';
 export const SET_USER_RENTALS = 'SET_USER_RENTALS';
 export const FETCH_DELETE_TECHPOST_SUCCESS = 'FETCH_DELETETECHPOST_SUCCESS'
-
+export const SET_ITEM_ID = 'SET_ITEM_ID'
 // export const FETCH_CREATERENTPOST_SUCCESS = "FETCH_CREATERENTPOST_SUCCESS"
 
 
 export const storeUserId = (user_id) => dispatch => { 
-    console.log("ACTION STORE USER ID ", user_id, SET_ID);
+   
    dispatch({ type: SET_ID, payload: user_id});
 }
 
@@ -21,7 +21,6 @@ export const storeUserRentals = (rent) => dispatch => {
     console.log("ACTION STORE RENTALS", rent, SET_USER_RENTALS)
     dispatch({type: SET_USER_RENTALS, payload: rent})
 }
-
 
 // TechListing get
 export const fetchTechListing = () => dispatch => {
@@ -46,6 +45,11 @@ export const fetchDeleteTechPost = (id) => dispatch => {
 }
 
 
+
+// export const storeItemId = (id) => dispatch => {
+//     console.log("ACTION STORE ID", id, SET_ITEM_ID)
+//     dispatch({type: SET_ITEM_ID, payload: id})
+// }
 
 //TechListing post
 

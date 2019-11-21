@@ -5,16 +5,40 @@ import { connect } from 'react-redux'
 import { storeUserRentals } from '../actions'
 import { fetchDeleteTechPost } from "../actions"
 import {axiosWithAuth } from '../utils/axiosWithAuth'
+import { makeStyles } from '@material-ui/core/styles';
 import { fetchTechListing } from '../actions'
 import MyRentals from "./MyRentals"
 import axios from "axios"
 import GridList from '@material-ui/core/GridList';
 import { Button } from "@material-ui/core";
+import Modal from "@material-ui/core/Modal"
+import EditAccount2 from "./EditAccount2"
 
+
+const useStyles = makeStyles(theme => ({
+
+    modalBox: {
+        position: 'absolute',
+        width: 600,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+      },
+    }));
 
 function Account (props) {
-    console.log(props, "account page")
+    // console.log(props, "account page")
+    const [open, setOpen] = React.useState(false);
+
     
+    const classes = useStyles();
+    const handleOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
     const [rentals, setRentals] = useState([]);
     
     useEffect(() => {
@@ -54,7 +78,19 @@ function Account (props) {
             <p>Location: {users.location}</p>
             <p>Phone Number: {users.phone_number}</p>
         </div>
-        <Link style={{margin: "0 Auto"}} to="/EditAccount"><Button>Edit Account</Button></Link>
+        {/* <Link style={{margin: "0 Auto"}} to="/EditAccount"><Button>Edit Account</Button></Link> */}
+        
+                        <Button onClick ={handleOpen}>Edit Account</Button>
+                        <Modal
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                            open={open}
+                            onClose={handleClose}
+                        >   
+                            <div className = {classes.modalBox}>
+                            <EditAccount2  users ={users}/>
+                            </div>
+                        </Modal>
         </div>
         <div>
             <h1 style={{display: "flex", justifyContent: "center"}}>My rentals</h1>
