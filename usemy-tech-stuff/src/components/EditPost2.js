@@ -73,7 +73,6 @@ const submitHandler = event => {
         .put(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com//api/rentals/${props.tech.id}`, item)  
         .then(res => console.log(res))
         .catch(err => console.log(err.response))
-        props.history.push("/TechList")
     
     console.log(item, "Edit Form submit handler")
 }

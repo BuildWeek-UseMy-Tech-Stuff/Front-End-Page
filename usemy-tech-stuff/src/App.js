@@ -35,9 +35,7 @@ function App(props) {
     <Route path="/dogs" component={Dogs} />
     <Route path="/morties" component={Morties} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
-    <PrivateRoute exact path ="/EditAccount" component = {EditAccount} />
     <PrivateRoute exact path="/AddItem" component = {PostItem} />
-    <PrivateRoute exact path="/EditPost/:postID" component = {EditPost} />
     <PrivateRoute exact path="/Account" component = {Account} />
     <Copyright/> 
     </div>
