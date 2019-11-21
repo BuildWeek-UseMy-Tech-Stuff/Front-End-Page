@@ -29,13 +29,14 @@ function App(props) {
   return (
     <div className="App">
     <Route path="/" component={Navigation} />
-    <Route exact path="/" component={LoginForm} />
     <Route path="/login" component={LoginForm} />
     <Route path="/signup" component={SignupForm} />
     <Route path="/dogs" component={Dogs} />
     <Route path="/morties" component={Morties} />
     <PrivateRoute exact path ="/TechList" component = {TechList} />
+    <PrivateRoute exact path ="/EditAccount" component = {EditAccount} />
     <PrivateRoute exact path="/AddItem" component = {PostItem} />
+    <PrivateRoute exact path="/EditPost/:postID" component = {EditPost} />
     <PrivateRoute exact path="/Account" component = {Account} />
     <Copyright/> 
     </div>

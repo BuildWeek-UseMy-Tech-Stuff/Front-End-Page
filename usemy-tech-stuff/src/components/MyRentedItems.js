@@ -25,22 +25,16 @@ const useStyles = makeStyles(theme => ({
     height: 140,
   },
   modalBox: {
-    height: "25",
+    position: 'absolute',
     width: 600,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    textAlign: "center",
   },
-  flex: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-  }
 }));
 
-const TechCard = (props) => {
+const MyRentedItems = (props) => {
 
     
     const classes = useStyles();
@@ -101,23 +95,11 @@ const TechCard = (props) => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button onClick ={() => {props.fetchDeleteTechPost(props.tech.id); setTimeout(function(){ props.history.push("/TechList"); }, 500)}} style={{margin: "5%"}} size="small" color="primary">
-                        Delete this item
+                        <Button style={{margin: "5%"}} size="small" color="primary">
+                        return
                         </Button>
-                        <Button onClick ={handleOpen}> edit
-                        {/* <Link to="/EditPost/:postID">Edit Post</Link> */}
-                        </Button>
-                        <Modal
-                            aria-labelledby="simple-modal-title"
-                            aria-describedby="simple-modal-description"
-                            open={open}
-                            onClose={handleClose}
-                            className={classes.flex}
-                        >   
-                            <div className = {classes.modalBox}>
-                            <EditPost2 {...props} tech ={props.tech}/>
-                            </div>
-                        </Modal>
+                        
+                        
                     </div>
                 </Card>
             </Grid>
@@ -127,5 +109,5 @@ const TechCard = (props) => {
 }
 
 
-export default TechCard
+export default MyRentedItems
 

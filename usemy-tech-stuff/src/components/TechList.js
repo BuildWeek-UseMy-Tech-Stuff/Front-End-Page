@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from 'react-redux'
 
-import { fetchTechListing } from '../actions'
+import { fetchTechListing, fetchAddRentedItem } from '../actions'
 import TechCard from './TechCard'
 import GridList from '@material-ui/core/GridList';
 
 const TechList = (props) => {
-
+  console.log(props.tech, "item details")
     useEffect(() => {
         props.fetchTechListing()
     }, []);
@@ -20,7 +20,7 @@ const TechList = (props) => {
         <div>
            <GridList style={{justifyContent: "center"}}>
             {props.tech.map((item, index) => (
-                <TechCard key={index} tech ={item} />              
+                <TechCard key={index} tech ={item}/>              
             ))}
             </GridList>
 
