@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 const TechCard = props => {
 
     
-    // console.log(props.tech.id)
+    console.log(props, "techCard page")
     
     const classes = useStyles();
 
@@ -127,7 +127,7 @@ const TechCard = props => {
                             placeholder="Enter start date"
                             required
                         /> */}
-                        <Button onClick={() => props.fetchAddRentedItem(props.userId, startDate, endDate)} style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick={() => props.fetchAddRentedItem(props.tech.id, startDate, endDate,props.userId)} style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>

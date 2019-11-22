@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MyRentedItems = (props) => {
-
+    console.log(props, "My Rented Items")
     
     const classes = useStyles();
 
@@ -46,21 +46,17 @@ const MyRentedItems = (props) => {
     
     
 
-    const [open, setOpen] = React.useState(false);
+   
     // const [openAccount, setOpenAccount] = React.useState(false);
     // const [postTool, setPostTool] = React.useState(false);
   
-    const handleOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
   
-//Model End
+
     return (
 
-      
+            
+
+
         <GridListTile style={{marginBottom: "5%"}} key={props.key} >
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 <Grid style={{height: "96%"}} item xs>

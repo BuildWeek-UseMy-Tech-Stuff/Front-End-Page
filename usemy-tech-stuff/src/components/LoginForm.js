@@ -161,12 +161,12 @@ const UserForm = ({ status, history }, props) => {
                         className={classes.submit}
                     >
                         Sign In
-          </Button>
+                    </Button>
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 Forgot password?
-              </Link>
+                        </Link>
                         </Grid>
                         <Grid item>
                             <Link href="/signup" variant="body2">
@@ -240,7 +240,7 @@ const FormikLoginForm = withFormik({
         //values is our object with all our data on it
         setStatus("waiting")
         axios
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
+            .post("https://tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
 
                 localStorage.setItem('token', res.data.token);
