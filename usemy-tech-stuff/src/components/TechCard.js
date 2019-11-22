@@ -31,13 +31,15 @@ const TechCard = props => {
     
     const classes = useStyles();
 
-    const [date, setDate] = useState({
-        rented_at: "",
-        due_back: "",
-    })
+    const [startDate, setStartDate] = useState(Date.now())
+    const [endDate, setEndDate] = useState(Date.now())
     
-    const changeHandler = event => {
-        setDate({...date, [event.target.name]: event.target.value})
+    const startDateHandler = event => {
+        setStartDate(event)
+    }
+
+    const endDateHandler = event => {
+        setEndDate(event)
     }
 
     return (
@@ -81,7 +83,7 @@ const TechCard = props => {
                     </CardContent>
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
-                        {/* <KeyboardDatePicker
+                        <KeyboardDatePicker
                         disableToolbar
                         name = "rented_at"
                         variant="inline"
@@ -89,11 +91,11 @@ const TechCard = props => {
                         margin="normal"
                         id="date-picker-inline"
                         label="Enter start date"
-                        value={date.rented_at}
-                        onChange={changeHandler}
-                        // KeyboardButtonProps={{
-                        //     'aria-label': 'change date',
-                        // }}
+                        value={startDate}
+                        onChange={startDateHandler}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
                         />
                         <KeyboardDatePicker
                         disableToolbar
@@ -103,13 +105,13 @@ const TechCard = props => {
                         margin="normal"
                         id="date-picker-inline"
                         label="Enter end date"
-                        value={date.due_back}
-                        onChange={changeHandler}
-                        // KeyboardButtonProps={{
-                        //     'aria-label': 'change date',
-                        // }}
-                        /> */}
-                        <input 
+                        value={endDate}
+                        onChange={endDateHandler}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                        />
+                        {/* <input 
                             type = "date"
                             name="rented_at"
                             value={date.rented_at}
@@ -124,11 +126,8 @@ const TechCard = props => {
                             onChange ={changeHandler}
                             placeholder="Enter start date"
                             required
-                        />
-
-
-
-                        <Button onClick={() => props.fetchAddRentedItem(props.userId, date.rented_at, date.due_back)} style={{margin: "5%"}} size="small" color="primary">
+                        /> */}
+                        <Button onClick={() => props.fetchAddRentedItem(props.userId, startDate, endDate)} style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>
