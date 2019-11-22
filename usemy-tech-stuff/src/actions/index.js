@@ -60,7 +60,7 @@ export const fetchRentedItem = (id) => dispatch => {
     dispatch({ type: START_FETCHING });
     axiosWithAuth()
     .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${id}/rented`)
-    .then(res => dispatch({ type: FETCH_RENTED_ITEMS_SUCCESS, payload: res.data }) & console.log(res, "fetchRentedTech"))
+    .then(res => dispatch({ type: FETCH_RENTED_ITEMS_SUCCESS, payload: res.data.rented }) & console.log(res, "fetchRentedTech"))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
 }
 

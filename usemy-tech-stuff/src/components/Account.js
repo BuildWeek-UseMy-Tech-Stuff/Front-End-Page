@@ -105,15 +105,25 @@ function Account (props) {
                         </Modal>
         </div>
         <div>
-            <h1 style={{display: "flex", justifyContent: "center"}}>My rentals</h1>
+            <h1 style={{display: "flex", justifyContent: "center"}}>My Rentals</h1>
             <GridList style={{justifyContent: "center"}}>
             {rentals.map(item => (
                 <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost} history ={props.history}/>              
             ))}
             </GridList>
-            {/* {props.rentItems.map(item => (
-                <MyRentals key= {item.id} tech ={item} history ={props.history} />
-            ))} */}
+            
+        </div>
+        <div>
+        <h1 style={{display: "flex", justifyContent: "center"}}>Items That I have Rented</h1>
+        
+        <GridList style={{justifyContent: "center"}}>
+        {props.rentItems.map(item => (
+                <MyRentedItems key={item.id} tech = {item}/>
+            ))}
+
+        </GridList>
+
+        
         </div>
         </>
 
