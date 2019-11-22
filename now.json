@@ -8,5 +8,5 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "/server/index.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "usemytech-stuff/$1" }]
 }
