@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -45,10 +45,10 @@ const TechCard = (props) => {
     
     const classes = useStyles();
 
-    const [date, setDate] = useState({
-        startDate: Date.now(),
-        endDate: Date.now()
-    })
+    useEffect(() => {
+        console.log('mounted');
+        return () => console.log('unmounting...');
+    },[])
     
     
 
