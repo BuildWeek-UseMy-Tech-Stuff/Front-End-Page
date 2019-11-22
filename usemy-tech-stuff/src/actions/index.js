@@ -20,13 +20,13 @@ export const storeUserId = (user_id) => dispatch => {
 
 
 export const storeUserRentals = (rent) => dispatch => {
-    console.log("ACTION STORE RENTALS", rent, SET_USER_RENTALS)
+    
     dispatch({type: SET_USER_RENTALS, payload: rent})
 }
 // TechListing Rent
-export const fetchAddRentedItem = (renter_id,rented_at, due_back, renter_Id) => dispatch => {
+export const fetchAddRentedItem = (id,rented_at, due_back, renter_id ) => dispatch => {
     axiosWithAuth()
-    .post(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/${renter_id}/rent`, {rented_at, due_back, renter_Id})
+    .post(`https://tech-stuff-api.herokuapp.com/api/rentals/${renter_id}/rent`, {id,rented_at, due_back })
     .then(res => dispatch({ type: FETCH_ADD_RENT_SUCCESS })& console.log(res, "fetchAddRental"))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
 }
@@ -57,7 +57,7 @@ export const fetchDeleteTechPost = (id) => dispatch => {
 export const fetchRentedItem = (id) => dispatch => {
     dispatch({ type: START_FETCHING });
     axiosWithAuth()
-    .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/users/${id}/rentals`)
+    .get(`https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/rentals/${id}`)
     .then(res => dispatch({ type: FETCH_RENTED_ITEMS_SUCCESS, payload: res.data }) & console.log(res, "fetchRentedTech"))
     .catch(err => dispatch({ type: FETCH_FAILURE, payload: err.response }))
 }

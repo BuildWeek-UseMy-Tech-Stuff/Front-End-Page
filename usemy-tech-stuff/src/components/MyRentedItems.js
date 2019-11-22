@@ -46,18 +46,12 @@ const MyRentedItems = (props) => {
     
     
 
-    const [open, setOpen] = React.useState(false);
+   
     // const [openAccount, setOpenAccount] = React.useState(false);
     // const [postTool, setPostTool] = React.useState(false);
   
-    const handleOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
   
-//Model End
+
     return (
 
       

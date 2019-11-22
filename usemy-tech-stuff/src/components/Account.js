@@ -9,11 +9,13 @@ import {axiosWithAuth } from '../utils/axiosWithAuth'
 import { makeStyles } from '@material-ui/core/styles';
 import { fetchTechListing } from '../actions'
 import MyRentals from "./MyRentals"
+import MyRentedItems from "./MyRentedItems"
 import axios from "axios"
 import GridList from '@material-ui/core/GridList';
 import { Button } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal"
 import EditAccount2 from "./EditAccount2"
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -109,9 +111,7 @@ function Account (props) {
                 <MyRentals key={item.id} tech ={item} fetchDeleteTechPost ={props.fetchDeleteTechPost} history ={props.history}/>              
             ))}
             </GridList>
-            {props.rentItems.map(item => (
-                <MyRentals key= {item.id} tech ={item} history ={props.history} />
-            ))}
+          
         </div>
         </>
 

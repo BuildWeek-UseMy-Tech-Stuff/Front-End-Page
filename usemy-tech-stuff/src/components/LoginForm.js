@@ -241,7 +241,7 @@ const FormikLoginForm = withFormik({
         //values is our object with all our data on it
         setStatus("waiting")
         axios
-            .post("https://cors-anywhere.herokuapp.com/tech-stuff-api.herokuapp.com/api/login", values)
+            .post("https://tech-stuff-api.herokuapp.com/api/login", values)
             .then(res => {
 
                 localStorage.setItem('token', res.data.token);

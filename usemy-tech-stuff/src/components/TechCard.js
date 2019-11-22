@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 const TechCard = props => {
 
     
-    // console.log(props.tech.id)
+    console.log(props, "techCard page")
     
     const classes = useStyles();
 
@@ -128,7 +128,7 @@ const TechCard = props => {
 
 
 
-                        <Button onClick={() => props.fetchAddRentedItem(props.userId, date.rented_at, date.due_back)} style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick={() => props.fetchAddRentedItem(props.userId, date.rented_at, date.due_back, props.tech.id)} style={{margin: "5%"}} size="small" color="primary">
                         Rent this item
                         </Button>
                     </div>

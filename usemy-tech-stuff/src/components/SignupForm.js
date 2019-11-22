@@ -236,7 +236,7 @@ const FormikLoginForm = withFormik({
     handleSubmit(values, { setStatus }) {
         setStatus("waiting");
         axiosWithAuth()
-            .post("https://cors-anywhere.herokuapp.com/https://tech-stuff-api.herokuapp.com/api/register", values)
+            .post("https://tech-stuff-api.herokuapp.com/api/register", values)
             .then(res => {
                 setStatus("success");
             })
