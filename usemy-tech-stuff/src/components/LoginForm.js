@@ -104,10 +104,9 @@ const UserForm = ({ status, history }, props) => {
           if (reason === 'clickaway') {
           return;
           } else if(status === "success"){
+            setOpen(false);
             history.push("/TechList")
           }
-  
-          setOpen(false);
       };
 
     const useStyles = makeStyles(theme => ({

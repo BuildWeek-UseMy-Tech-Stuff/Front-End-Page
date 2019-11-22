@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -45,10 +45,10 @@ const TechCard = (props) => {
     
     const classes = useStyles();
 
-    const [date, setDate] = useState({
-        startDate: Date.now(),
-        endDate: Date.now()
-    })
+    useEffect(() => {
+        console.log('mounted');
+        return () => console.log('unmounting...');
+    },[])
     
     
 
@@ -101,7 +101,7 @@ const TechCard = (props) => {
                     </CardActionArea>
                     <div style={{display: 'flex', flexFlow: "row wrap", justifyContent: "center", marginBottom: "7px"}}>
                         
-                        <Button onClick ={() => props.fetchDeleteTechPost(props.tech.id) } style={{margin: "5%"}} size="small" color="primary">
+                        <Button onClick ={() => {props.fetchDeleteTechPost(props.tech.id); setTimeout(function(){ props.history.push("/TechList"); }, 500)}} style={{margin: "5%"}} size="small" color="primary">
                         Delete this item
                         </Button>
                         <Button onClick ={handleOpen}> edit
